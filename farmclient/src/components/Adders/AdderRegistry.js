@@ -1,3 +1,7 @@
+// TODO:
+// Switch exampleObject to an array of property names
+// NOTE: Also need to change in AdderForm from Object.keys()
+
 export const FarmAdderInfo = {
     name: "farm",
     displayName: "Farm",

@@ -61,6 +61,10 @@ export default (props) => {
             <form onSubmit={handleSubmit}>
 
                 {/* Create input fields dynamically */}
+                {/* TODO:
+                Once exampleObject is changed to an arrray in 
+                AdderRegistry, change the following lines to just
+                the array name instead of Object.keys() */}
                 {Object.keys(exampleObject).map(property => {
                     return (
                         <div className="adder-form-input">
