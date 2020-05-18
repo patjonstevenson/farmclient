@@ -13,7 +13,11 @@ export default (props) => {
     //      => receive actionFunction
 
     const {
-        actionFunction, exampleObject, types, switchFormVisibility
+        actionFunction,
+        exampleObject,
+        types,
+        switchFormVisibility,
+        formVisibility
     } = props.props;
     const [thing, setThing] = useState(exampleObject);
 
@@ -48,7 +52,12 @@ export default (props) => {
     console.log("exampleObject in AdderForm: ", exampleObject);
 
     return (
-        <div className='adder-form'>
+        <div className={`adder-form-${
+            formVisibility
+                ? "visible"
+                : "invisible"
+            }`}
+        >
             <form onSubmit={handleSubmit}>
 
                 {/* Create input fields dynamically */}

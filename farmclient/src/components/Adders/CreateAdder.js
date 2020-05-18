@@ -17,6 +17,7 @@ export default (AdderInfo) => () => {
     }
 
     const handleClick = e => {
+        e.preventDefault();
         switchFormVisibility();
     }
 
@@ -27,17 +28,13 @@ export default (AdderInfo) => () => {
         <div className={`adder ${name}-adder`}>
             <button
                 className={`adder-button ${name}-adder-button`}
-                onClick={() => handleClick}
+                onClick={handleClick}
             >
                 Add {displayName}
             </button>
             <AdderForm
-                className={`adder-form-${
-                    formVisibility
-                        ? "visible"
-                        : "invisible"
-                    }`}
-                props={{...AdderInfo, switchFormVisibility}}
+
+                props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
             // props={actionFunction, exampleObject, types, switchFormVisibility}
             />
         </div>

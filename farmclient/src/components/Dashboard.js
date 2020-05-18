@@ -1,5 +1,6 @@
 import React from "react";
 import Farm from "./Farm";
+import { FarmAdder } from "./Adders";
 
 export default props => {
     console.log("'farms' in Dashboard.js", props.farms);
@@ -10,7 +11,8 @@ export default props => {
     return (
         <div className="dashboard">
             <h1>Farms</h1>
-            <button className="add-button">Add Farm</button>
+            <FarmAdder />
+            {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
                 {props.farms.map(farm => <Farm farm={farm} />)}
             </div>

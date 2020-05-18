@@ -24,7 +24,7 @@ export const PumpAdderInfo = {
         name: String,
         farm_id: Number
     },
-    actionFunction: () => { console.log("Added a pump!"); }
+    actionFunction: (pump) => { console.log("Added a pump!\n", pump); }
 };
 export const ValveAdderInfo = {
     name: "valve",
