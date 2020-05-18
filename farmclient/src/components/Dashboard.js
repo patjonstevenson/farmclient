@@ -8,13 +8,14 @@ export default props => {
     // props.farms.forEach(element => {
     //     console.log("Element: ", element);
     // });
+    const user_id = 0;
     return (
         <div className="dashboard">
             <h1>Farms</h1>
-            <FarmAdder />
+            <FarmAdder derived={{ user_id: props.user_id }} />
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
-                {props.farms.map(farm => <Farm farm={farm} />)}
+                {props.farms.map(farm => <Farm user_id={0} farm={farm} />)}
             </div>
         </div>
     );

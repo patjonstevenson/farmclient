@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AdderForm from "./AdderForm";
 
-export default (AdderInfo) => () => {
+export default (AdderInfo, derived) => () => {
     const {
         name,
         displayName,
@@ -33,7 +33,7 @@ export default (AdderInfo) => () => {
                 Add {displayName}
             </button>
             <AdderForm
-
+                derived={derived}
                 props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
             // props={actionFunction, exampleObject, types, switchFormVisibility}
             />

@@ -1,6 +1,8 @@
 // TODO:
 // Switch exampleObject to an array of property names
 // NOTE: Also need to change in AdderForm from Object.keys()
+// ALSO NEED TO MAKE THE TYPE FOR USER_ID, FARM_ID, AND PUMP_ID A 
+// FUNCTION THAT GRABS THOSE IDS FROM THE PARENT COMPONENT
 
 export const FarmAdderInfo = {
     name: "farm",
