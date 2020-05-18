@@ -26,3 +26,7 @@
 .valves {
   padding: 5%;
 }
+
+.adder-form-invisible {
+  display: none;
+}
