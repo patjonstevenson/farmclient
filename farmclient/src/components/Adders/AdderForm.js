@@ -71,7 +71,6 @@ export default (props) => {
                             <label htmlFor={thing[property]}>{property}</label>
                             <input value={thing[property]} onChange={handleChanges(property)} />
                         </div>
-
                     );
                 })}
 
