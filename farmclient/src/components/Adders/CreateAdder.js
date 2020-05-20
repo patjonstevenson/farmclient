@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AdderForm from "./AdderForm";
 
+// !!!!! WHAT IS DERIVED??? !!!!!
 export default (AdderInfo, derived) => () => {
     const {
         name,
