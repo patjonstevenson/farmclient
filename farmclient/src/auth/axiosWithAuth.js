@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-export const axiosWithAuth = () => {
+export default () => {
     const token = localStorage.getItem('token');
 
     if (token === "undefined") {
