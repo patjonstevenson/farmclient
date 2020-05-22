@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.farms {
+  display: flex;
+  flex-direction: column;
+  /* padding: 5%; */
+}
+
+.farm {
+  display: flex;
+  flex-direction: column;
+}
+
+.pumps {
+  display: flex;
+  flex-direction: row;
+  margin: 5%;
+}
+
+.pump {
+  padding: 5%;
+}
+
+.valves {
+  padding: 5%;
+}
+
+.adder-form-invisible {
+  display: none;
+}
