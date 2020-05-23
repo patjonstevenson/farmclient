@@ -7,16 +7,15 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import reducer from "./state/reducers";
+import rootReducer from "./state/reducers";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
-  // <React.StrictMode>
+  // <React.StrictMode> was OG wrapper
   <Provider store={store}>
     <App />
   </Provider>
-  {/* </React.StrictMode> */ }
   , document.getElementById('root')
 );
 
