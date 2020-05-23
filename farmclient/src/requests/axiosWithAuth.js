@@ -1,5 +1,5 @@
-
 import axios from 'axios';
+import baseURL from "./base_url";
 
 export default () => {
     const token = localStorage.getItem('token');
@@ -9,7 +9,7 @@ export default () => {
     }
 
     return axios.create({
-        baseURL: "http://localhost:9000/api/",
+        baseURL,
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `${token}`,
