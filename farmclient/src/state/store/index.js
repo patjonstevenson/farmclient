@@ -1,57 +1,12 @@
-import userStore from 
+import userStore from "../resources/user/reducer";
+import farmStore from "../resources/farm/reducer";
+import strategyStore from "../resources/strategy/reducer";
 
 export default {
     // USER INFO
-    user: {
-        id: null,
-        first_name: "",
-        last_name: "",
-        email: ""
-    },
-
+    ...userStore,
     // FARMS
-    /*
-        Should be an array of farm objects, eg:
-        [
-            {
-                id: null, // farm_id
-                name: "",
-                timezone: "",
-                pumps: [
-                    {
-                        id: null, // pump_id
-                        name: "",
-                        strategy: null // strategy_id,
-                        valves: [
-                            {
-                                id: null, // valve_id
-                                name: ""
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    */
-    farms: [],
-
+    ...farmStore,
     // Strategies
-    /*
-        Should be an array of strategy objects, eg:
-        [
-            {
-                id: null // strategy_id
-                name: "",
-                tactics: [
-                    {
-                        id: null,
-                        time: "",
-                        humidity_high: null,
-                        dryback: null
-                    }
-                ]
-            }
-        ]
-    */
-    strategies: []
-}
+    ...strategyStore
+};
