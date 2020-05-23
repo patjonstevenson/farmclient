@@ -1,9 +1,9 @@
 import axiosWithAuth from "../../../requests/axiosWithAuth";
 import axios from "../../../requests/axios";
 import {
-    REGISTER_USER_START,
-    REGISTER_USER_SUCCESS,
-    REGISTER_USER_FAILURE,
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAILURE,
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
@@ -14,19 +14,19 @@ import {
 
 export default {
     registerUser: user => dispatch => {
-        dispatch({ type: REGISTER_USER_START });
+        dispatch({ type: REGISTER_START });
         try {
             const id = await axios.post(
                 "auth/register",
                 user
             );
             dispatch({
-                type: REGISTER_USER_SUCCESS,
+                type: REGISTER_SUCCESS,
                 payload: id
             });
         } catch (error) {
             dispatch({
-                type: REGISTER_USER_FAILURE,
+                type: REGISTER_FAILURE,
                 payload: error
             });
         }
@@ -40,12 +40,12 @@ export default {
             );
             localStorage.setItem("token", token);
             dispatch({
-                type: REGISTER_USER_SUCCESS,
+                type: LOGIN_SUCCESS,
                 payload: id
             });
         } catch (error) {
             dispatch({
-                type: REGISTER_USER_FAILURE,
+                type: LOGIN_FAILURE,
                 payload: error
             });
         }
