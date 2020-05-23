@@ -5,13 +5,13 @@ export default {
             {
                 id: null // strategy_id
                 name: "",
-                tactics: [
-                    {
-                        id: null,
-                        time: "",
-                        humidity_high: null,
-                        dryback: null
-                    }
+                tactics: [ tacticId1, tacticId2...
+                    // {
+                    //     id: null,
+                    //     time: "",
+                    //     humidity_high: null,
+                    //     dryback: null
+                    // }
                 ]
             }
         ]
