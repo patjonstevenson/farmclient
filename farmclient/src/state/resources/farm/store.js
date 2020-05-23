@@ -6,19 +6,8 @@ export default {
                id: null, // farm_id
                name: "",
                timezone: "",
-               pumps: [
-                   {
-                       id: null, // pump_id
-                       name: "",
-                       strategy: null // strategy_id,
-                       valves: [
-                           {
-                               id: null, // valve_id
-                               name: ""
-                           }
-                       ]
-                   }
-               ]
+               pumps: [ pumpId1, pumpId2, etc ]
+               valves: [ valveId1, valveId2, etc ]
            }
        ]
    */
