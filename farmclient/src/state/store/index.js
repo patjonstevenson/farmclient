@@ -1,3 +1,5 @@
+import userStore from 
+
 export default {
     // USER INFO
     user: {

@@ -10,7 +10,7 @@ import {
     FETCH_USER_DATA_START,
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE
-} from "./types";
+} from "./action-types";
 
 export default {
     registerUser: user => dispatch => {

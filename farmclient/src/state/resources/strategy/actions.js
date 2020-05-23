@@ -31,7 +31,7 @@ import {
     DELETE_TACTIC_START,
     DELETE_TACTIC_SUCCESS,
     DELETE_TACTIC_FAILURE
-} from "./types";
+} from "./action-types";
 
 // Can then import Strategy from "......strategy/functions";
 // and do Strategy.fetchStrategies() etc

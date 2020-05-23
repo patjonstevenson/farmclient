@@ -43,8 +43,8 @@ import {
     DELETE_VALVE_START,
     DELETE_VALVE_SUCCESS,
     DELETE_VALVE_FAILURE
-} from "./types";
-import axiosWithAuth from "../../../requests/axiosWithAuth";
+} from "./action-types";
+import axiosWithAuth from "../../requests/axiosWithAuth";
 
 // Can then import Farm from "......farm/functions";
 // and do Farm.fetchFarms() etc
