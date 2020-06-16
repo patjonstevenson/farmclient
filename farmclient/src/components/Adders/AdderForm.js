@@ -36,12 +36,17 @@ export default (props) => {
 
         // Coerce the types
         for (let property in thing) {
-            setThing(
-                {
-                    ...thing,
-                    [property]: types[property](thing[property])
-                }
-            );
+            try {
+                setThing(
+                    {
+                        ...thing,
+                        [property]: types[property](thing[property])
+                    }
+                );
+            } catch (error) {
+                console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
+                console.log(`Occurred for property ${property}`);
+            }
         }
 
         actionFunction(thing);
