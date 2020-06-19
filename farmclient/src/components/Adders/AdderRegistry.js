@@ -20,7 +20,7 @@ export const FarmAdderInfo = {
         user_id: Number,
         timezone: String
     },
-    actionFunction: () => { console.log("Added a farm!"); }
+    actionFunction: farm => { console.log("Added a farm!\n", farm); }
 };
 export const PumpAdderInfo = {
     name: "pump",
@@ -33,7 +33,7 @@ export const PumpAdderInfo = {
         name: String,
         farm_id: Number
     },
-    actionFunction: (pump) => { console.log("Added a pump!\n", pump); }
+    actionFunction: pump => { console.log("Added a pump!\n", pump); }
 };
 export const ValveAdderInfo = {
     name: "valve",
@@ -46,5 +46,5 @@ export const ValveAdderInfo = {
         name: String,
         pump_id: Number
     },
-    actionFunction: () => { console.log("Added a valve!"); }
+    actionFunction: valve => { console.log("Added a valve!\n", valve); }
 }
