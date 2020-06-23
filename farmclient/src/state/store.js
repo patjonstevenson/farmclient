@@ -4,9 +4,9 @@ import strategyStore from "../resources/strategy/reducer";
 
 export default {
     // USER INFO
-    ...userStore,
+    users: userStore,
     // FARMS
-    ...farmStore,
+    farms: farmStore,
     // Strategies
-    ...strategyStore
+    strategies: strategyStore
 };

@@ -11,10 +11,8 @@ export default {
             }
        ]
    */
-    pumps: [],
-    byId: {},
-    byFarmId: {},
+    data: [],
+    // pumpsById: {},
+    // pumpsByFarmId: {},
+    pump
 };
-
-
-

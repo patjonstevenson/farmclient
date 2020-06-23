@@ -28,7 +28,39 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
+        case ADD_PUMP_START:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: true,
+                    error: null,
+                },
 
+            };
+        case ADD_PUMP_SUCCESS:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: null,
+                    data: [...state.pumps, action.payload]
+                },
+                // pumpsById: {
+                //     ...state.pumps.byId,
+                //     [action.payload.id]: action.payload
+                // },
+                // pumpsByFarmId: action.payload.farmId
+                //     ? {
+                //         ...state.pumps.byFarmId,
+                //         [action.payload.farmId]: [
+                //             ...state.pumpsByFarmId[action.payload.farmId],
+                //             action.payload
+                //         ]
+                //     } : {
+                //         ...state.pumps.byFarmId,
+                //     }
+
+            }
 
         default:
             return state;
