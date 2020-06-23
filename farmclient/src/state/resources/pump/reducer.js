@@ -28,6 +28,7 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
+        // ADD
         case ADD_PUMP_START:
             return {
                 ...state,
@@ -35,7 +36,6 @@ export default (state = initialStore, action) => {
                     isFetching: true,
                     error: null,
                 },
-
             };
         case ADD_PUMP_SUCCESS:
             return {
@@ -43,7 +43,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: false,
                     error: null,
-                    data: [...state.pumps, action.payload]
+                    data: [...state.pumps.data, action.payload],
                 },
                 // pumpsById: {
                 //     ...state.pumps.byId,
@@ -59,11 +59,45 @@ export default (state = initialStore, action) => {
                 //     } : {
                 //         ...state.pumps.byFarmId,
                 //     }
-
+            };
+        case ADD_PUMP_FAILURE:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: action.payload,
+                },
             }
 
-        default:
-            return state;
+        // UPDATE
+        case UPDATE_PUMP_START:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: true,
+                    error: null,
+                },
+            };
+        case UPDATE_PUMP_SUCCESS:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: null,
+                    data: [
+                        ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
+                        action.payload
+                    ].sort((a, b) => a.id > b.id ? 1 : -1),
+                },
+            };
+        case UPDATE_PUMP_FAILURE:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: action.payload,
+                },
+            }
     }
 
 }
