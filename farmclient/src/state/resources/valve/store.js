@@ -12,11 +12,6 @@ export default {
    */
     valves: [],
     byId: {},
-    byFarmId: {},
+    byFarmId: {}, // should be an array when there are multiple valves per farm
     byPumpId: {},
 };
-
-
-
-
-
