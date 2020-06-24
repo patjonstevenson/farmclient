@@ -97,7 +97,33 @@ export default (state = initialStore, action) => {
                     isFetching: false,
                     error: action.payload,
                 },
-            }
-    }
+            };
 
+        // DELETE
+        case DELETE_PUMP_START:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: true,
+                    error: null,
+                },
+            };
+        case DELETE_PUMP_SUCCESS:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: null,
+                    data: state.pumps.data.filter(pump => pump.id !== action.payload)
+                },
+            };
+        case DELETE_PUMP_FAILURE:
+            return {
+                ...state,
+                pumps: {
+                    isFetching: false,
+                    error: action.payload,
+                },
+            };
+    }
 }
