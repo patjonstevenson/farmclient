@@ -18,7 +18,89 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
+        // REGISTER
+        case REGISTER_START:
+            return {
+                ...state,
+                user: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    isFetching: false,
+                    error: null,
+                    data: action.payload,
+                }
+            };
+        case REGISTER_FAILURE:
+            return {
+                ...state,
+                user: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            }
 
+        // UPDATE
+        case UPDATE_FARM_START:
+            return {
+                ...state,
+                farms: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case UPDATE_FARM_SUCCESS:
+            return {
+                ...state,
+                farms: {
+                    isFetching: false,
+                    error: null,
+                    data: [
+                        ...state.farms.data.filter(farm => farm.id !== action.payload.id),
+                        action.payload
+                    ].sort((a, b) => a.id > b.id ? 1 : -1),
+                }
+            };
+        case UPDATE_FARM_FAILURE:
+            return {
+                ...state,
+                farms: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            };
+
+        // DELETE
+        case DELETE_FARM_START:
+            return {
+                ...state,
+                farms: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case DELETE_FARM_SUCCESS:
+            return {
+                ...state,
+                farms: {
+                    isFetching: false,
+                    error: null,
+                    data: state.farms.data.filter(farm => farm.id !== action.payload)
+                }
+            };
+        case DELETE_FARM_FAILURE:
+            return {
+                ...state,
+                farms: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            };
 
         default:
             return state;

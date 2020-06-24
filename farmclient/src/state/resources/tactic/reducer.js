@@ -16,7 +16,6 @@ import {
     DELETE_TACTIC_FAILURE
 } from "./action-types";
 
-
 export default (state = initialStore, action) => {
     // For logs
     console.log("\nReducer running.");

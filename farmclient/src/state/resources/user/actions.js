@@ -16,13 +16,14 @@ export default {
     registerUser: user => dispatch => {
         dispatch({ type: REGISTER_START });
         try {
-            const id = await axios.post(
+            const { user, token } = await axios.post(
                 "auth/register",
                 user
             );
+            localStorage.setItem("token", token);
             dispatch({
                 type: REGISTER_SUCCESS,
-                payload: id
+                payload: user
             });
         } catch (error) {
             dispatch({
