@@ -35,7 +35,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case ADD_PUMP_SUCCESS:
             return {
@@ -44,7 +44,7 @@ export default (state = initialStore, action) => {
                     isFetching: false,
                     error: null,
                     data: [...state.pumps.data, action.payload],
-                },
+                }
                 // pumpsById: {
                 //     ...state.pumps.byId,
                 //     [action.payload.id]: action.payload
@@ -66,7 +66,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             }
 
         // UPDATE
@@ -76,7 +76,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case UPDATE_PUMP_SUCCESS:
             return {
@@ -88,7 +88,7 @@ export default (state = initialStore, action) => {
                         ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
                         action.payload
                     ].sort((a, b) => a.id > b.id ? 1 : -1),
-                },
+                }
             };
         case UPDATE_PUMP_FAILURE:
             return {
@@ -96,7 +96,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             };
 
         // DELETE
@@ -106,7 +106,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case DELETE_PUMP_SUCCESS:
             return {
@@ -115,7 +115,7 @@ export default (state = initialStore, action) => {
                     isFetching: false,
                     error: null,
                     data: state.pumps.data.filter(pump => pump.id !== action.payload)
-                },
+                }
             };
         case DELETE_PUMP_FAILURE:
             return {
@@ -123,7 +123,7 @@ export default (state = initialStore, action) => {
                 pumps: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             };
     }
 }

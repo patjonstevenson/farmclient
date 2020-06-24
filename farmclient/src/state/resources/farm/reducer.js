@@ -28,98 +28,84 @@ export default (state = initialStore, action) => {
         case ADD_FARM_START:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case ADD_FARM_SUCCESS:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: null,
-                    data: [...state.pumps.data, action.payload],
-                },
-                // pumpsById: {
-                //     ...state.pumps.byId,
-                //     [action.payload.id]: action.payload
-                // },
-                // pumpsByFarmId: action.payload.farmId
-                //     ? {
-                //         ...state.pumps.byFarmId,
-                //         [action.payload.farmId]: [
-                //             ...state.pumpsByFarmId[action.payload.farmId],
-                //             action.payload
-                //         ]
-                //     } : {
-                //         ...state.pumps.byFarmId,
-                //     }
+                    data: [...state.farms.data, action.payload],
+                }
             };
         case ADD_FARM_FAILURE:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             }
 
         // UPDATE
         case UPDATE_FARM_START:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case UPDATE_FARM_SUCCESS:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: null,
                     data: [
-                        ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
+                        ...state.farms.data.filter(farm => farm.id !== action.payload.id),
                         action.payload
                     ].sort((a, b) => a.id > b.id ? 1 : -1),
-                },
+                }
             };
         case UPDATE_FARM_FAILURE:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             };
 
         // DELETE
         case DELETE_FARM_START:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: true,
                     error: null,
-                },
+                }
             };
         case DELETE_FARM_SUCCESS:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: null,
-                    data: state.pumps.data.filter(pump => pump.id !== action.payload)
-                },
+                    data: state.farms.data.filter(farm => farm.id !== action.payload)
+                }
             };
         case DELETE_FARM_FAILURE:
             return {
                 ...state,
-                pumps: {
+                farms: {
                     isFetching: false,
                     error: action.payload,
-                },
+                }
             };
 
         default:
