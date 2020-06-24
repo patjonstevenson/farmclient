@@ -72,31 +72,44 @@ export default (state = initialStore, action) => {
                 }
             };
 
-        // DELETE
-        case DELETE_FARM_START:
+        // FETCH USER DATA (CALLED IN DASHBOARD)
+        case FETCH_USER_DATA_START:
             return {
                 ...state,
-                farms: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetchingUserData: true,
+                errorFetchingUserData: null
             };
-        case DELETE_FARM_SUCCESS:
+        case FETCH_USER_DATA_SUCCESS:
             return {
                 ...state,
+                isFetchingUserData: false,
+                errorFetchingUserData: null,
                 farms: {
-                    isFetching: false,
-                    error: null,
-                    data: state.farms.data.filter(farm => farm.id !== action.payload)
-                }
+                    ...state.farms,
+                    data: action.payload.farms,
+                },
+                pumps: {
+                    ...state.pumps,
+                    data: action.payload.pumps,
+                },
+                valves: {
+                    ...state.valves,
+                    data: action.payload.valves,
+                },
+                strategies: {
+                    ...state.strategies,
+                    data: action.payload.strategies,
+                },
+                tactics: {
+                    ...state.tactics,
+                    data: action.payload.tactics,
+                },
             };
-        case DELETE_FARM_FAILURE:
+        case FETCH_USER_DATA_FAILURE:
             return {
                 ...state,
-                farms: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetchingUserData: false,
+                errorFetchingUserData: action.payload
             };
 
         default:
