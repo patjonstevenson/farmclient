@@ -12,5 +12,7 @@ export default {
             }
         ]
     */
-    strategies: []
+    data: [],
+    isFetching: false,
+    error: null
 };

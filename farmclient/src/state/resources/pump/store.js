@@ -12,7 +12,8 @@ export default {
        ]
    */
     data: [],
-    // pumpsById: {},
-    // pumpsByFarmId: {},
-    pump
+    isFetching: false,
+    error: null
+    // byPumpId: {},
+    // byFarmId: {},
 };

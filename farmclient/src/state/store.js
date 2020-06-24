@@ -1,12 +1,15 @@
-import userStore from "../resources/user/reducer";
-import farmStore from "../resources/farm/reducer";
-import strategyStore from "../resources/strategy/reducer";
+import userStore from "./resources/user/store";
+import farmStore from "./resources/farm/store";
+import pumpStore from "./resources/pump/store";
+import valveStore from "./resources/valve/store";
+import strategyStore from "./resources/strategy/store";
+import tacticStore from "./resources/tactic/store";
 
 export default {
-    // USER INFO
-    users: userStore,
-    // FARMS
+    user: userStore,
     farms: farmStore,
-    // Strategies
-    strategies: strategyStore
+    pumps: pumpStore,
+    valves: valveStore,
+    strategies: strategyStore,
+    tactics: tacticStore
 };
