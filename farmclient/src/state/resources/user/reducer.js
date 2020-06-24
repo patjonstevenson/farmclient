@@ -46,30 +46,27 @@ export default (state = initialStore, action) => {
             }
 
         // UPDATE
-        case UPDATE_FARM_START:
+        case LOGIN_START:
             return {
                 ...state,
-                farms: {
+                user: {
                     isFetching: true,
                     error: null,
                 }
             };
-        case UPDATE_FARM_SUCCESS:
+        case LOGIN_SUCCESS:
             return {
                 ...state,
-                farms: {
+                user: {
                     isFetching: false,
                     error: null,
-                    data: [
-                        ...state.farms.data.filter(farm => farm.id !== action.payload.id),
-                        action.payload
-                    ].sort((a, b) => a.id > b.id ? 1 : -1),
+                    data: action.payload
                 }
             };
-        case UPDATE_FARM_FAILURE:
+        case LOGIN_FAILURE:
             return {
                 ...state,
-                farms: {
+                user: {
                     isFetching: false,
                     error: action.payload,
                 }
