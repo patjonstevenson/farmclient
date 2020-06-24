@@ -45,7 +45,7 @@ export default (state = initialStore, action) => {
                 }
             }
 
-        // UPDATE
+        // LOGIN
         case LOGIN_START:
             return {
                 ...state,
@@ -69,6 +69,24 @@ export default (state = initialStore, action) => {
                 user: {
                     isFetching: false,
                     error: action.payload,
+                }
+            };
+
+        // LOGOUT
+        case LOGOUT_START:
+            return {
+                ...state,
+                isLoggingOut: true,
+                errorLoggingOut: null
+            };
+        case LOGOUT_SUCCESS:
+            return initialStore;
+        case LOGOUT_FAILURE:
+            return {
+                ...state,
+                user: {
+                    isLoggingOut: false,
+                    errorLoggingOut: action.payload
                 }
             };
 

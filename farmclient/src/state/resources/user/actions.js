@@ -50,7 +50,20 @@ export default {
                 payload: error
             });
         }
-
+    },
+    logout: () => dispatch => {
+        dispatch({ type: LOGOUT_START });
+        try {
+            localStorage.removeItem("token");
+            dispatch({
+                type: LOGOUT_SUCCESS,
+            });
+        } catch (error) {
+            dispatch({
+                type: LOGOUT_FAILURE,
+                payload: error
+            });
+        }
     },
     fetchUserData: id => dispatch => {
         dispatch({ type: FETCH_USER_DATA_START });
