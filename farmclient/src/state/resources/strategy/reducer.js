@@ -19,7 +19,7 @@ import {
 
 export default (state = initialStore, action) => {
     // For logs
-    console.log("\nReducer running.");
+    console.log("\nStrategy reducer running.");
     console.log("Action: ", action.type);
     console.log("Payload: ", action.payload);
 
