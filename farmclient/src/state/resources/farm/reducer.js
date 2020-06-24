@@ -23,7 +23,6 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
-
         // ADD
         case ADD_FARM_START:
             return {
