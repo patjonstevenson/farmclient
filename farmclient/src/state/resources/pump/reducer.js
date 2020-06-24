@@ -1,4 +1,4 @@
-import initialStore from "../store";
+import initialStore from "./store";
 import {
     // GET
     // FETCH_PUMP_START,
