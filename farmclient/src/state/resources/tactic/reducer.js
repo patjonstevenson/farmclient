@@ -1,10 +1,5 @@
 import initialStore from "../store";
 import {
-    // GET
-    // FETCH_TACTIC_START,
-    // FETCH_TACTIC_SUCCESS,
-    // FETCH_TACTIC_FAILURE,
-
     // POST
     ADD_TACTIC_START,
     ADD_TACTIC_SUCCESS,
@@ -29,7 +24,89 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
+        // ADD
+        case ADD_TACTIC_START:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case ADD_TACTIC_SUCCESS:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: null,
+                    data: [...state.tactics.data, action.payload],
+                }
+            };
+        case ADD_TACTIC_FAILURE:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            }
 
+        // UPDATE
+        case UPDATE_TACTIC_START:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case UPDATE_TACTIC_SUCCESS:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: null,
+                    data: [
+                        ...state.tactics.data.filter(tactic => tactic.id !== action.payload.id),
+                        action.payload
+                    ].sort((a, b) => a.id > b.id ? 1 : -1),
+                }
+            };
+        case UPDATE_TACTIC_FAILURE:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            };
+
+        // DELETE
+        case DELETE_TACTIC_START:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: true,
+                    error: null,
+                }
+            };
+        case DELETE_TACTIC_SUCCESS:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: null,
+                    data: state.tactics.data.filter(tactic => tactic.id !== action.payload)
+                }
+            };
+        case DELETE_TACTIC_FAILURE:
+            return {
+                ...state,
+                tactics: {
+                    isFetching: false,
+                    error: action.payload,
+                }
+            };
 
         default:
             return state;
