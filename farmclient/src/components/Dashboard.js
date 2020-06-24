@@ -9,6 +9,9 @@ export default props => {
     //     console.log("Element: ", element);
     // });
     const user_id = 0;
+
+    // FETCH USER DATA
+
     return (
         <div className="dashboard">
             <h1>Farms</h1>
