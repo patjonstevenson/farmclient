@@ -1,5 +1,6 @@
 import React from "react";
 import Farm from "./Farm";
+import Farms from "./Farms";
 import { FarmAdder } from "./Adders";
 
 export default props => {
@@ -18,6 +19,7 @@ export default props => {
             <FarmAdder derived={{ user_id: props.user_id }} />
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
+                <Farms />
                 {props.farms.map(farm => <Farm user_id={0} farm={farm} />)}
             </div>
         </div>

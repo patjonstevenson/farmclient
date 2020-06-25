@@ -6,10 +6,15 @@ import strategyStore from "./resources/strategy/store";
 import tacticStore from "./resources/tactic/store";
 
 export default {
+    // By Resource
     user: userStore,
     farms: farmStore,
     pumps: pumpStore,
     valves: valveStore,
     strategies: strategyStore,
-    tactics: tacticStore
+    tactics: tacticStore,
+
+    // Global
+    isFetchingUserData: false,
+    errorFetchingUserData: null,
 };

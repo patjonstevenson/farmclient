@@ -1,4 +1,4 @@
-import initialStore from "../store";
+import initialStore from "../../store";
 import {
     // POST
     ADD_TACTIC_START,
