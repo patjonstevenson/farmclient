@@ -1,4 +1,4 @@
-import initialStore from "../../store";
+import initialStore from "./store";
 import {
     // GET
     // FETCH_PUMP_START,
@@ -125,5 +125,8 @@ export default (state = initialStore, action) => {
                     error: action.payload,
                 }
             };
+
+        default:
+            return state;
     }
 }

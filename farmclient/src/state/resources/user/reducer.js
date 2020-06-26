@@ -1,4 +1,4 @@
-import initialStore from "../../store";
+import initialStore from "./store";
 import {
     REGISTER_START,
     REGISTER_SUCCESS,

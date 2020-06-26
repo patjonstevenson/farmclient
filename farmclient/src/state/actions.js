@@ -1,9 +1,15 @@
-import User from "./resources/user/actions";
-import Farm from "./resources/farm/actions";
-import Strategy from "./resources/strategy/actions";
+import user from "./resources/user/actions";
+import farms from "./resources/farm/actions";
+import pumps from "./resources/pump/actions";
+import valves from "./resources/valve/actions";
+import strategies from "./resources/strategy/actions";
+import tactics from "./resources/tactic/actions";
 
 export default {
-    ...User,
-    ...Farm,
-    ...Strategy
+    user,
+    farms,
+    pumps,
+    valves,
+    strategies,
+    tactics
 };

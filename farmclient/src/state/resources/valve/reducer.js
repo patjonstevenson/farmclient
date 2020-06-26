@@ -1,4 +1,4 @@
-import initialStore from "../../store";
+import initialStore from "./store";
 import {
     // ADD
     ADD_VALVE_START,

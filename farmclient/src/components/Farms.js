@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 // ({ farms })
 export const Farms = props => {
+    console.log("props in Farms: ", props);
     return (
         <div className="farms">
             {
@@ -13,8 +14,11 @@ export const Farms = props => {
     );
 }
 
-const mapStateToProps = state => ({
-    farms: state.farms.data
-});
+const mapStateToProps = state => {
+    console.log("\nSTATE:\n", state);
+    return ({
+        farms: state.farms.data
+    });
+}
 
 export default connect(mapStateToProps)(Farms);

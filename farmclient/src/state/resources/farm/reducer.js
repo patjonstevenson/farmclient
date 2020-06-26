@@ -1,4 +1,4 @@
-import initialStore from "../../store";
+import initialStore from "./store";
 import {
     // ADD
     ADD_FARM_START,
@@ -20,7 +20,7 @@ export default (state = initialStore, action) => {
     // For logs
     console.log("\nFarm reducer running.");
     console.log("Action: ", action.type);
-    console.log("Payload: ", action.payload);
+    console.log("Payload: ", action.payload);   
 
     switch (action.type) {
         // ADD

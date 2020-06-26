@@ -34,24 +34,24 @@ export default (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        // Coerce the types
-        for (let property in thing) {
-            try {
+        try {
+            // Coerce the types
+            for (let property in thing) {
                 setThing({
                     ...thing,
                     [property]: types[property](thing[property])
                 });
-            } catch (error) {
-                console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
-                console.log(`Occurred for property ${property}`);
             }
+        } catch (error) {
+            console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
+            console.log(`Occurred for property ${property}`);
+            // Send form object to the server
+            actionFunction(thing);
+            // Make form go away
+            switchFormVisibility();
+            // Reset form
+            setThing(exampleObject);
         }
-        // Send form object to the server
-        actionFunction(thing);
-        // Make form go away
-        switchFormVisibility();
-        // Reset form
-        setThing(exampleObject);
     };
     console.log("props in AdderForm: ", props);
     console.log("exampleObject in AdderForm: ", exampleObject);
