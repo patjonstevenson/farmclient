@@ -12,6 +12,7 @@ export default props => {
     const user_id = 0;
 
     // FETCH USER DATA
+    // useEffect(() => {}, []);
 
     return (
         <div className="dashboard">
