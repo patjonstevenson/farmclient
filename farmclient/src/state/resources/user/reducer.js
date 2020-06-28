@@ -97,44 +97,49 @@ export default (state = initialStore, action) => {
         case FETCH_USER_DATA_START:
             return {
                 ...state,
-                isFetchingUserData: true,
-                errorFetchingUserData: null
+                isFetching: true,
+                error: null,
+                // isFetchingUserData: true,
+                // errorFetchingUserData: null
             };
         case FETCH_USER_DATA_SUCCESS:
             return {
                 ...state,
-                isFetchingUserData: false,
-                errorFetchingUserData: null,
-                user: {
-                    ...state.user,
-                    data: action.payload.user,
-                },
-                farms: {
-                    ...state.farms,
-                    data: action.payload.farms,
-                },
-                pumps: {
-                    ...state.pumps,
-                    data: action.payload.pumps,
-                },
-                valves: {
-                    ...state.valves,
-                    data: action.payload.valves,
-                },
-                strategies: {
-                    ...state.strategies,
-                    data: action.payload.strategies,
-                },
-                tactics: {
-                    ...state.tactics,
-                    data: action.payload.tactics,
-                },
+                isFetching: false,
+                error: null,
+                // isFetchingUserData: false,
+                // errorFetchingUserData: null,
+                // user: {
+                // ...state.user,
+                data: action.payload.user,
+                // },
+                // farms: {
+                //     ...state.farms,
+                //     data: action.payload.farms,
+                // },
+                // pumps: {
+                //     ...state.pumps,
+                //     data: action.payload.pumps,
+                // },
+                // valves: {
+                //     ...state.valves,
+                //     data: action.payload.valves,
+                // },
+                // strategies: {
+                //     ...state.strategies,
+                //     data: action.payload.strategies,
+                // },
+                // tactics: {
+                //     ...state.tactics,
+                //     data: action.payload.tactics,
+                // },
             };
         case FETCH_USER_DATA_FAILURE:
             return {
                 ...state,
-                isFetchingUserData: false,
-                errorFetchingUserData: action.payload
+                isFetching: false,
+                error: action.payload
+                // errorFetchingUserData: action.payload
             };
 
         default:

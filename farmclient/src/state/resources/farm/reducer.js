@@ -41,7 +41,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: action.payload,
+                data: action.payload.farms,
             };
         case FETCH_USER_DATA_FAILURE:
             return {

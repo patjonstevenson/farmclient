@@ -29,6 +29,27 @@ export default (state = initialStore, action) => {
     console.log("Payload: ", action.payload);
 
     switch (action.type) {
+        // FETCH ALL DATA
+        case FETCH_USER_DATA_START:
+            return {
+                ...state,
+                isFetching: true,
+                error: null,
+            };
+        case FETCH_USER_DATA_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                error: null,
+                data: action.payload.strategies,
+            };
+        case FETCH_USER_DATA_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload,
+            };
+
         // ADD
         case ADD_STRATEGY_START:
             return {
