@@ -25,54 +25,42 @@ export default (state = initialStore, action) => {
         case REGISTER_START:
             return {
                 ...state,
-                user: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                user: {
-                    isFetching: false,
-                    error: null,
-                    data: action.payload,
-                }
+                isFetching: false,
+                error: null,
+                data: action.payload,
             };
         case REGISTER_FAILURE:
             return {
                 ...state,
-                user: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             }
 
         // LOGIN
         case LOGIN_START:
             return {
                 ...state,
-                user: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case LOGIN_SUCCESS:
             return {
                 ...state,
-                user: {
-                    isFetching: false,
-                    error: null,
-                    data: action.payload
-                }
+                isFetching: false,
+                error: null,
+                data: action.payload
             };
         case LOGIN_FAILURE:
             return {
                 ...state,
-                user: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         // LOGOUT
@@ -87,10 +75,8 @@ export default (state = initialStore, action) => {
         case LOGOUT_FAILURE:
             return {
                 ...state,
-                user: {
-                    isLoggingOut: false,
-                    errorLoggingOut: action.payload
-                }
+                isLoggingOut: false,
+                errorLoggingOut: action.payload
             };
 
         // FETCH USER DATA (CALLED IN DASHBOARD)
@@ -99,51 +85,22 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: true,
                 error: null,
-                // isFetchingUserData: true,
-                // errorFetchingUserData: null
             };
         case FETCH_USER_DATA_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
                 error: null,
-                // isFetchingUserData: false,
-                // errorFetchingUserData: null,
-                // user: {
-                // ...state.user,
                 data: action.payload.user,
-                // },
-                // farms: {
-                //     ...state.farms,
-                //     data: action.payload.farms,
-                // },
-                // pumps: {
-                //     ...state.pumps,
-                //     data: action.payload.pumps,
-                // },
-                // valves: {
-                //     ...state.valves,
-                //     data: action.payload.valves,
-                // },
-                // strategies: {
-                //     ...state.strategies,
-                //     data: action.payload.strategies,
-                // },
-                // tactics: {
-                //     ...state.tactics,
-                //     data: action.payload.tactics,
-                // },
             };
         case FETCH_USER_DATA_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 error: action.payload
-                // errorFetchingUserData: action.payload
             };
 
         default:
             return state;
     }
-
 }
