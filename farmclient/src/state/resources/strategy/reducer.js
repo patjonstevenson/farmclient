@@ -28,84 +28,66 @@ export default (state = initialStore, action) => {
         case ADD_STRATEGY_START:
             return {
                 ...state,
-                strategies: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case ADD_STRATEGY_SUCCESS:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: null,
-                    data: [...state.strategies.data, action.payload],
-                }
+                isFetching: false,
+                error: null,
+                data: [...state.strategies.data, action.payload],
             };
         case ADD_STRATEGY_FAILURE:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             }
 
         // UPDATE
         case UPDATE_STRATEGY_START:
             return {
                 ...state,
-                strategies: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case UPDATE_STRATEGY_SUCCESS:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: null,
-                    data: [
-                        ...state.strategies.data.filter(strategy => strategy.id !== action.payload.id),
-                        action.payload
-                    ].sort((a, b) => a.id > b.id ? 1 : -1),
-                }
+                isFetching: false,
+                error: null,
+                data: [
+                    ...state.strategies.data.filter(strategy => strategy.id !== action.payload.id),
+                    action.payload
+                ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
         case UPDATE_STRATEGY_FAILURE:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         // DELETE
         case DELETE_STRATEGY_START:
             return {
                 ...state,
-                strategies: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case DELETE_STRATEGY_SUCCESS:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: null,
-                    data: state.strategies.data.filter(strategy => strategy.id !== action.payload)
-                }
+                isFetching: false,
+                error: null,
+                data: state.strategies.data.filter(strategy => strategy.id !== action.payload)
             };
         case DELETE_STRATEGY_FAILURE:
             return {
                 ...state,
-                strategies: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         default:
