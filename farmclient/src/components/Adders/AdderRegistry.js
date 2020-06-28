@@ -7,6 +7,36 @@ import { addFarm } from "../../state/resources/farm/actions";
 // ALSO NEED TO MAKE THE TYPE FOR USER_ID, FARM_ID, AND PUMP_ID A 
 // FUNCTION THAT GRABS THOSE IDS FROM THE PARENT COMPONENT
 
+export const LoginInfo = {
+    name: "login",
+    displayName: "Login",
+    exampleObject: {
+        name: "",
+        user_id: "",
+        timezone: ""
+    },
+    types: {
+        name: String,
+        user_id: Number,
+        timezone: String
+    },
+    actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
+};
+export const RegisterInfo = {
+    name: "Register",
+    displayName: "Register",
+    exampleObject: {
+        name: "",
+        user_id: "",
+        timezone: ""
+    },
+    types: {
+        name: String,
+        user_id: Number,
+        timezone: String
+    },
+    actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
+};
 export const FarmAdderInfo = {
     name: "farm",
     displayName: "Farm",
