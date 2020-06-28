@@ -27,84 +27,67 @@ export default (state = initialStore, action) => {
         case ADD_TACTIC_START:
             return {
                 ...state,
-                tactics: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case ADD_TACTIC_SUCCESS:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: null,
-                    data: [...state.tactics.data, action.payload],
-                }
+                isFetching: false,
+                error: null,
+                data: [...state.tactics.data, action.payload],
             };
         case ADD_TACTIC_FAILURE:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             }
 
         // UPDATE
         case UPDATE_TACTIC_START:
             return {
                 ...state,
-                tactics: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case UPDATE_TACTIC_SUCCESS:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: null,
-                    data: [
-                        ...state.tactics.data.filter(tactic => tactic.id !== action.payload.id),
-                        action.payload
-                    ].sort((a, b) => a.id > b.id ? 1 : -1),
-                }
+                isFetching: false,
+                error: null,
+                data: [
+                    ...state.tactics.data.filter(tactic => tactic.id !== action.payload.id),
+                    action.payload
+                ].sort((a, b) => a.id > b.id ? 1 : -1),
+
             };
         case UPDATE_TACTIC_FAILURE:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         // DELETE
         case DELETE_TACTIC_START:
             return {
                 ...state,
-                tactics: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case DELETE_TACTIC_SUCCESS:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: null,
-                    data: state.tactics.data.filter(tactic => tactic.id !== action.payload)
-                }
+                isFetching: false,
+                error: null,
+                data: state.tactics.data.filter(tactic => tactic.id !== action.payload)
             };
         case DELETE_TACTIC_FAILURE:
             return {
                 ...state,
-                tactics: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         default:
