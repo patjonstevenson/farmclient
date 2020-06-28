@@ -50,11 +50,6 @@ export default (state = initialStore, action) => {
                 error: action.payload,
             };
 
-
-
-
-
-
         // ADD
         case ADD_FARM_START:
             return {

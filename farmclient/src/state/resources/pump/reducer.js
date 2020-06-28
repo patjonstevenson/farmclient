@@ -32,19 +32,16 @@ export default (state = initialStore, action) => {
         case ADD_PUMP_START:
             return {
                 ...state,
-                pumps: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case ADD_PUMP_SUCCESS:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: null,
-                    data: [...state.pumps.data, action.payload],
-                }
+
+                isFetching: false,
+                error: null,
+                data: [...state.pumps.data, action.payload],
                 // pumpsById: {
                 //     ...state.pumps.byId,
                 //     [action.payload.id]: action.payload
@@ -63,67 +60,53 @@ export default (state = initialStore, action) => {
         case ADD_PUMP_FAILURE:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             }
 
         // UPDATE
         case UPDATE_PUMP_START:
             return {
                 ...state,
-                pumps: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case UPDATE_PUMP_SUCCESS:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: null,
-                    data: [
-                        ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
-                        action.payload
-                    ].sort((a, b) => a.id > b.id ? 1 : -1),
-                }
+                isFetching: false,
+                error: null,
+                data: [
+                    ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
+                    action.payload
+                ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
         case UPDATE_PUMP_FAILURE:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         // DELETE
         case DELETE_PUMP_START:
             return {
                 ...state,
-                pumps: {
-                    isFetching: true,
-                    error: null,
-                }
+                isFetching: true,
+                error: null,
             };
         case DELETE_PUMP_SUCCESS:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: null,
-                    data: state.pumps.data.filter(pump => pump.id !== action.payload)
-                }
+                isFetching: false,
+                error: null,
+                data: state.pumps.data.filter(pump => pump.id !== action.payload)
             };
         case DELETE_PUMP_FAILURE:
             return {
                 ...state,
-                pumps: {
-                    isFetching: false,
-                    error: action.payload,
-                }
+                isFetching: false,
+                error: action.payload,
             };
 
         default:
