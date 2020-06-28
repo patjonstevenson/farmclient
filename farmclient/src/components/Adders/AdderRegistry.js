@@ -1,5 +1,5 @@
 // Action function imports
-
+import { addFarm } from "../../state/resources/farm/actions";
 
 // TODO:
 // Switch exampleObject to an array of property names
@@ -20,7 +20,7 @@ export const FarmAdderInfo = {
         user_id: Number,
         timezone: String
     },
-    actionFunction: farm => { console.log("Added a farm!\n", farm); }
+    actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
 };
 export const PumpAdderInfo = {
     name: "pump",

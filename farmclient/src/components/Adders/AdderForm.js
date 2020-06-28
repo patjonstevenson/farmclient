@@ -42,15 +42,16 @@ export default (props) => {
                     [property]: types[property](thing[property])
                 });
             }
-        } catch (error) {
-            console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
-            console.log(`Occurred for property ${property}`);
             // Send form object to the server
             actionFunction(thing);
             // Make form go away
             switchFormVisibility();
             // Reset form
             setThing(exampleObject);
+        } catch (error) {
+            // console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
+            // console.log(`Occurred for property ${property}`);
+            
         }
     };
     console.log("props in AdderForm: ", props);

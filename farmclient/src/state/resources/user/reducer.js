@@ -105,6 +105,10 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetchingUserData: false,
                 errorFetchingUserData: null,
+                user: {
+                    ...state.user,
+                    data: action.payload.user,
+                },
                 farms: {
                     ...state.farms,
                     data: action.payload.farms,
