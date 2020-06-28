@@ -27,7 +27,7 @@ const Dashboard = ({fetchUserData, id}) => {
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
                 <Farms />
-                {props.farms.map(farm => <Farm user_id={0} farm={farm} />)}
+                {/* {props.farms.map(farm => <Farm user_id={0} farm={farm} />)} */}
             </div>
         </div>
     );
