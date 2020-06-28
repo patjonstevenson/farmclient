@@ -15,7 +15,12 @@ import {
     DELETE_STRATEGY_SUCCESS,
     DELETE_STRATEGY_FAILURE,
 } from "./action-types";
-
+import {
+    // FETCH
+    FETCH_USER_DATA_START,
+    FETCH_USER_DATA_SUCCESS,
+    FETCH_USER_DATA_FAILURE,
+} from "../user/action-types";
 
 export default (state = initialStore, action) => {
     // For logs
