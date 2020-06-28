@@ -9,7 +9,7 @@ import tacticReducer from "./resources/tactic/reducer";
 
 export default combineReducers(
     {
-        users: userReducer,
+        user: userReducer,
         farms: farmReducer,
         pumps: pumpReducer,
         valves: valveReducer,

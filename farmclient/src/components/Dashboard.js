@@ -6,13 +6,13 @@ import { connect } from "react-redux";
 import { fetchUserData } from "../state/resources/user/actions";
 // import Login from "./Login";
 
-const Dashboard = ({fetchUserData, id}) => {
-    console.log("'farms' in Dashboard.js", props.farms);
-    console.log("'farms[0]' in Dashboard.js", props.farms[0]);
+const Dashboard = ({ fetchUserData, id }) => {
+    // console.log("'farms' in Dashboard.js", props.farms);
+    // console.log("'farms[0]' in Dashboard.js", props.farms[0]);
     // props.farms.forEach(element => {
     //     console.log("Element: ", element);
     // });
-    const user_id = 0;
+    // const user_id = 0;
 
     // FETCH USER DATA
     useEffect(() => {
@@ -23,7 +23,7 @@ const Dashboard = ({fetchUserData, id}) => {
         <div className="dashboard">
 
             <h1>Farms</h1>
-            <FarmAdder derived={{ user_id: props.user_id }} />
+            <FarmAdder derived={{ user_id: id }} />
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
                 <Farms />
@@ -33,8 +33,11 @@ const Dashboard = ({fetchUserData, id}) => {
     );
 }
 
-const mapStateToProps = state = ({
-    id: state.user.id
-})
+const mapStateToProps = state => {
+    console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`)
+    return ({
+        id: state.user.id
+    });
+}
 
-export default connect({ fetch })
+export default connect(mapStateToProps, { fetchUserData })(Dashboard);

@@ -7,13 +7,16 @@ import {
     LOGIN_START,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
+    LOGOUT_START,
+    LOGOUT_SUCCESS,
+    LOGOUT_FAILURE,
     FETCH_USER_DATA_START,
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE
 } from "./action-types";
 
 
-export const registerUser = user => dispatch => {
+export const registerUser = user => async dispatch => {
     dispatch({ type: REGISTER_START });
     try {
         const { new_user, token } = await axios.post(
@@ -32,7 +35,7 @@ export const registerUser = user => dispatch => {
         });
     }
 };
-export const login = credentials => dispatch => {
+export const login = credentials => async dispatch => {
     dispatch({ type: LOGIN_START });
     try {
         const { token, user } = await axios.post(
@@ -54,7 +57,7 @@ export const login = credentials => dispatch => {
         });
     }
 };
-export const logout = () => dispatch => {
+export const logout = () => async dispatch => {
     dispatch({ type: LOGOUT_START });
     try {
         localStorage.removeItem("token");
@@ -68,7 +71,7 @@ export const logout = () => dispatch => {
         });
     }
 }
-export const fetchUserData = id => dispatch => {
+export const fetchUserData = id => async dispatch => {
     dispatch({ type: FETCH_USER_DATA_START });
     try {
         const userInfo = await axiosWithAuth.get(`users/${id}`);
