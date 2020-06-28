@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { login } from "../state/resources/user/actions";
 
-export default (props) => {
+const Login = (props) => {
     // TODO:
     // we need to know the following:
 
@@ -12,21 +14,24 @@ export default (props) => {
     //      what to do on submit?
     //      => receive actionFunction
 
-    const {
-        actionFunction,
-        exampleObject,
-        types,
-        switchFormVisibility,
-        formVisibility
-    } = props.props;
-    const [thing, setThing] = useState(exampleObject);
+    // const {
+    //     actionFunction,
+    //     exampleObject,
+    //     types,
+    //     switchFormVisibility,
+    //     formVisibility
+    // } = props.props;
+    const [credentials, setCredentials] = useState({
+        email,
+        password
+    });
 
 
     const handleChanges = property => e => {
         // TODO:
         // Probably should make this polymorphic through closure
-        setThing({
-            ...thing,
+        setCredentials({
+            ...credentials,
             [property]: e.target.value
         })
     };
@@ -34,25 +39,17 @@ export default (props) => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        try {
-            // Coerce the types
-            for (let property in thing) {
-                setThing({
-                    ...thing,
-                    [property]: types[property](thing[property])
-                });
-            }
-            // Send form object to the server
-            actionFunction(thing);
-            // Make form go away
-            switchFormVisibility();
-            // Reset form
-            setThing(exampleObject);
-        } catch (error) {
-            // console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
-            // console.log(`Occurred for property ${property}`);
-            
-        }
+
+        // Send form object to the server
+        login(thing);
+        // Make form go away
+        switchFormVisibility();
+        // Reset form
+        setCredentials({
+            email,
+            password
+        });
+
     };
     console.log("props in AdderForm: ", props);
     console.log("exampleObject in AdderForm: ", exampleObject);
@@ -92,3 +89,10 @@ export default (props) => {
         </div>
     );
 };
+
+
+// const mapStateToProps = state => ({
+
+// })
+
+export default connect({ login })(Login);

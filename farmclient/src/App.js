@@ -8,7 +8,12 @@ function App() {
   return (
     <div className="App">
       <h1>Farm App</h1>
-      <Dashboard farms={farms} />
+      {/* NEED A LANDING PAGE */}
+
+      {/* SET UP ROUTES */}
+
+
+      <Dashboard />
     </div>
   );
 }
