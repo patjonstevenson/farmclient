@@ -9,12 +9,16 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import rootReducer from "./state/reducer";
 
+import { BrowserRouter as Router } from "react-router-dom";
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   // <React.StrictMode> was OG wrapper
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
   , document.getElementById('root')
 );
