@@ -86,7 +86,7 @@ export const fetchUserData = id => async dispatch => {
         const userInfo = res.data;
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: userInfo
+            payload: userInfo.data
         });
     } catch (error) {
         dispatch({

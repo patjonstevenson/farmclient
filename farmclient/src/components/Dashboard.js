@@ -19,17 +19,17 @@ const Dashboard = ({ fetchUserData, ...props }) => {
         console.log("PROPS: ", props.user.data.id);
         console.log("\nID in Dashboard useEffect: ", props.id);
         fetchUserData(props.user.data.id);
-    }, [props.id]);
+    }, []);
 
     console.log(props.id);
     return (
         <div className="dashboard">
-
             <h1>Farms</h1>
             <FarmAdder derived={{ user_id: props.id }} />
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
-                {props.id ? <Farms /> : <></>}
+                <Farms />
+                {/* {props.id ? <Farms /> : <></>} */}
                 {/* {props.farms.map(farm => <Farm user_id={0} farm={farm} />)} */}
             </div>
         </div>
@@ -38,6 +38,7 @@ const Dashboard = ({ fetchUserData, ...props }) => {
 
 const mapStateToProps = state => {
     console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`);
+    if (state.farms) { console.log("state.farms in dashboard", state.farms); }
     return ({
         id: state.user.id,
         user: state.user
