@@ -8,7 +8,9 @@ export const Farms = props => {
     return (
         <div className="farms">
             {
-                props.farms.map(farm => <Farm farm={farm} />)
+                props.farms
+                    ? props.farms.map(farm => <Farm farm={farm} />)
+                    : <h3>Loading Farms...</h3>
             }
         </div>
     );

@@ -19,42 +19,50 @@ import {
 export const registerUser = user => async dispatch => {
     dispatch({ type: REGISTER_START });
     try {
-        const { new_user, token } = await axios.post(
+        const res = await axios.post(
             "auth/register",
             user
         );
+        const { new_user, token } = res.data;
         localStorage.setItem("token", token);
         dispatch({
             type: REGISTER_SUCCESS,
             payload: new_user
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: REGISTER_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 export const login = credentials => async dispatch => {
     dispatch({ type: LOGIN_START });
     try {
-        const { token, user } = await axios.post(
+        const res = await axios.post(
             "auth/login",
             credentials
         );
+        const { token, user } = res.data;
+        console.log("SUCCESSFUL LOGIN");
+        console.log("RESPONSE: ", res);
         localStorage.setItem("token", token);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {
                 ...user,
-                ...credentials.email
+                email: credentials.email
             }
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: LOGIN_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 export const logout = () => async dispatch => {
@@ -74,10 +82,11 @@ export const logout = () => async dispatch => {
 export const fetchUserData = id => async dispatch => {
     dispatch({ type: FETCH_USER_DATA_START });
     try {
-        const userInfo = await axiosWithAuth.get(`users/${id}`);
+        const res = await axiosWithAuth().get(`users/${id}`);
+        const userInfo = res.data;
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: userInfo
+            payload: userInfo.data
         });
     } catch (error) {
         dispatch({

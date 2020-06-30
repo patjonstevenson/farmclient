@@ -1,6 +1,7 @@
 import React from "react";
 import Pump from "./Pump";
 import { PumpAdder } from "./Adders";
+import { Pumps } from "./Pumps";
 
 export default props => {
     console.log("'farm' in Farm.js:\n", props.farm.pumps);
@@ -12,7 +13,8 @@ export default props => {
                 <h3> Pumps</h3>
                 {/* <button className="add-button">Add Pump</button> */}
                 <PumpAdder />
-                {props.farm.pumps.map(pump => <Pump pump={pump} />)}
+                <Pumps />
+                {/* {props.farm.pumps.map(pump => <Pump pump={pump} />)} */}
             </div>
         </div>
     );
