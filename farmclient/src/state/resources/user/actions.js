@@ -56,11 +56,13 @@ export const login = credentials => async dispatch => {
                 email: credentials.email
             }
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: LOGIN_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 export const logout = () => async dispatch => {

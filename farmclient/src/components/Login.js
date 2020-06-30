@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../state/resources/user/actions";
 
-const Login = ({ login, props }) => {
+const Login = ({ login, id, props }) => {
     // TODO:
     // we need to know the following:
 
@@ -31,35 +31,41 @@ const Login = ({ login, props }) => {
 
 
     const handleChanges = property => e => {
-        // TODO:
-        // Probably should make this polymorphic through closure
         setCredentials({
             ...credentials,
             [property]: e.target.value
         })
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-
+        console.log("SUBMITTING...");
         // Send form object to the server
-        const successful = login(credentials);
-        // navigate to dashboard if successful
-        if (successful) {
-            console.log("TIME TO GO TO DASHBOARD");
-            console.log("History: ", props.history);
-            props.history.push("/dashboard");
-        } else {
-            console.log("ERROR LOGGING IN");
+        try {
+            const successful = await login(credentials);
+            console.log("Successful? ", successful);
+            console.log("id: ", id);
+            // navigate to dashboard if successful
+            if (successful) {
+                console.log("TIME TO GO TO DASHBOARD");
+                console.log("History: ", props.history);
+                props.history.push("/dashboard");
+                // history.push("/dashboard");
+            } else {
+                console.log("ERROR LOGGING IN");
+            }
+            // Make form go away
+            // switchFormVisibility();
+            // Reset form
+            setCredentials({
+                email: "",
+                password: ""
+            });
+        } catch (error) {
+            console.log("ERROR LOGGING IN:\n", error);
         }
-        // Make form go away
-        // switchFormVisibility();
-        // Reset form
-        setCredentials({
-            email: "",
-            password: ""
-        });
+
 
     };
     console.log("props in AdderForm: ", props);
@@ -110,8 +116,16 @@ const Login = ({ login, props }) => {
 };
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {
+    console.log(`\nUSER in Login:\n${Object.keys(state.user.data)}\n`);
+    Object.keys(state.user.data).forEach(key => { console.log(`${key}:\n${state.key}`); });
+    return ({
+        id: state.user.id
+    });
+}
 
-})
+// const mapStateToProps = state => ({
+//     state
+// })
 
 export default connect(mapStateToProps, { login })(Login);

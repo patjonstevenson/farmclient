@@ -50,6 +50,9 @@ export default (state = initialStore, action) => {
                 error: null,
             };
         case LOGIN_SUCCESS:
+            console.log("INSIDE REDUCER CASE LOGIN SUCCESS");
+            console.log("state prior to action: ", state);
+            console.log("data: ", action.payload);
             return {
                 ...state,
                 isFetching: false,
