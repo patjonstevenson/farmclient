@@ -45,6 +45,7 @@ const Login = ({ login, props }) => {
 
         // Send form object to the server
         const successful = login(credentials);
+        // navigate to dashboard if successful
         if (successful) {
             console.log("TIME TO GO TO DASHBOARD");
             console.log("History: ", props.history);
@@ -81,7 +82,7 @@ const Login = ({ login, props }) => {
                 </div>
                 <div className="adder-form-input">
                     <label htmlFor={credentials.password}>Password</label>
-                    <input value={credentials.password} onChange={handleChanges("password")} />
+                    <input type="password" value={credentials.password} onChange={handleChanges("password")} />
                 </div>
 
 
