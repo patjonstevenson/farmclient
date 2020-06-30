@@ -82,7 +82,7 @@ export const logout = () => async dispatch => {
 export const fetchUserData = id => async dispatch => {
     dispatch({ type: FETCH_USER_DATA_START });
     try {
-        const res = await axiosWithAuth.get(`users/${id}`);
+        const res = await axiosWithAuth().get(`users/${id}`);
         const userInfo = res.data;
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
