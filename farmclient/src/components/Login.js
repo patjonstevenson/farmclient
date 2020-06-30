@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { login } from "../state/resources/user/actions";
 
-const Login = (props) => {
+const Login = ({ login, props }) => {
     // TODO:
     // we need to know the following:
 
@@ -22,9 +23,11 @@ const Login = (props) => {
     //     formVisibility
     // } = props.props;
     const [credentials, setCredentials] = useState({
-        email,
-        password
+        email: "",
+        password: ""
     });
+
+    const history = useHistory();
 
 
     const handleChanges = property => e => {
@@ -41,25 +44,28 @@ const Login = (props) => {
 
 
         // Send form object to the server
-        login(thing);
+        const successful = login(credentials);
+        if (successful) {
+            console.log("TIME TO GO TO DASHBOARD");
+            console.log("History: ", props.history);
+            props.history.push("/dashboard");
+        } else {
+            console.log("ERROR LOGGING IN");
+        }
         // Make form go away
-        switchFormVisibility();
+        // switchFormVisibility();
         // Reset form
         setCredentials({
-            email,
-            password
+            email: "",
+            password: ""
         });
 
     };
     console.log("props in AdderForm: ", props);
-    console.log("exampleObject in AdderForm: ", exampleObject);
+    // console.log("exampleObject in AdderForm: ", exampleObject);
 
     return (
-        <div className={`adder-form-${
-            formVisibility
-                ? "visible"
-                : "invisible"
-            }`}
+        <div className={`login-form`}
         >
             <form onSubmit={handleSubmit}>
 
@@ -68,14 +74,26 @@ const Login = (props) => {
                 Once exampleObject is changed to an arrray in 
                 AdderRegistry, change the following lines to just
                 the array name instead of Object.keys() */}
-                {Object.keys(exampleObject).map(property => {
+
+                <div className="login-form-input">
+                    <label htmlFor={credentials.email}>Email</label>
+                    <input value={credentials.email} onChange={handleChanges("email")} />
+                </div>
+                <div className="adder-form-input">
+                    <label htmlFor={credentials.password}>Password</label>
+                    <input value={credentials.password} onChange={handleChanges("password")} />
+                </div>
+
+
+
+                {/* {Object.keys(state).map(property => {
                     return (
                         <div className="adder-form-input">
                             <label htmlFor={thing[property]}>{property}</label>
                             <input value={thing[property]} onChange={handleChanges(property)} />
                         </div>
                     );
-                })}
+                })} */}
 
                 <button
                     className={"form-button"}
@@ -91,8 +109,8 @@ const Login = (props) => {
 };
 
 
-// const mapStateToProps = state => ({
+const mapStateToProps = state => ({
 
-// })
+})
 
-export default connect({ login })(Login);
+export default connect(mapStateToProps, { login })(Login);

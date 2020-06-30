@@ -34,7 +34,7 @@ const Dashboard = ({ fetchUserData, id }) => {
 }
 
 const mapStateToProps = state => {
-    console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`)
+    console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`);
     return ({
         id: state.user.id
     });
