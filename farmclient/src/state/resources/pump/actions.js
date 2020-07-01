@@ -25,71 +25,70 @@ import axiosWithAuth from "../../requests/axiosWithAuth";
 // Can then import Farm from "......farm/functions";
 // and do Farm.fetchFarms() etc
 
-export default {
-    // GET
-    // fetchFarms: () => {},
-    // fetchFarmBy
 
-    // ^^^ DO WE EVEN NEED SEPARATE GETs?
-    // OR WILL WE ALWAYS JUST GET THEM WITH THE REST OF USER DATA, IN BULK?
-    // JUST GET THEM ALL TOGETHER FOR NOW IN USER FUNCTIONS
+// GET
+// fetchFarms: () => {},
+// fetchFarmBy
 
-    // ADD
-    addPump: (pump, farm_id) => async dispatch => {
-        dispatch({ type: ADD_PUMP_START });
-        try {
-            const newPump = await axiosWithAuth.post(
-                `farms/${farm_id}/pumps`,
-                pump
-            );
-            dispatch({
-                type: ADD_PUMP_SUCCESS,
-                payload: newPump
-            });
-        } catch (error) {
-            dispatch({
-                type: ADD_PUMP_FAILURE,
-                payload: error
-            });
-        }
-    },
+// ^^^ DO WE EVEN NEED SEPARATE GETs?
+// OR WILL WE ALWAYS JUST GET THEM WITH THE REST OF USER DATA, IN BULK?
+// JUST GET THEM ALL TOGETHER FOR NOW IN USER FUNCTIONS
 
-    // PUT
-    updatePump: (changes, farm_id, pump_id) => async dispatch => {
-        dispatch({ type: UPDATE_PUMP_START });
-        try {
-            const updated = await axiosWithAuth.post(
-                `farms/${farm_id}/pumps/${pump_id}`,
-                changes
-            );
-            dispatch({
-                type: UPDATE_PUMP_SUCCESS,
-                payload: updated
-            });
-        } catch (error) {
-            dispatch({
-                type: UPDATE_PUMP_FAILURE,
-                payload: error
-            });
-        }
-    },
-
-    // DELETE
-    deletePump: (pump_id, farm_id) => async dispatch => {
-        dispatch({ type: DELETE_PUMP_START });
-        try {
-            const deleted_id = await axiosWithAuth.delete(
-                `farms/${farm_id}/pumps/${pump_id}`
-            );
-            dispatch({
-                type: DELETE_PUMP_SUCCESS,
-                payload: deleted_id
-            });
-        } catch (error) {
-            dispatch({
-                type: DELETE_PUMP_FAILURE,
-                payload: error
-            });
-        }
+// ADD
+export const addPump = (pump, farm_id) => async dispatch => {
+    dispatch({ type: ADD_PUMP_START });
+    try {
+        const newPump = await axiosWithAuth.post(
+            `farms/${farm_id}/pumps`,
+            pump
+        );
+        dispatch({
+            type: ADD_PUMP_SUCCESS,
+            payload: newPump
+        });
+    } catch (error) {
+        dispatch({
+            type: ADD_PUMP_FAILURE,
+            payload: error
+        });
     }
-}
+};
+
+// PUT
+export const updatePump = (changes, farm_id, pump_id) => async dispatch => {
+    dispatch({ type: UPDATE_PUMP_START });
+    try {
+        const updated = await axiosWithAuth.post(
+            `farms/${farm_id}/pumps/${pump_id}`,
+            changes
+        );
+        dispatch({
+            type: UPDATE_PUMP_SUCCESS,
+            payload: updated
+        });
+    } catch (error) {
+        dispatch({
+            type: UPDATE_PUMP_FAILURE,
+            payload: error
+        });
+    }
+};
+
+// DELETE
+export const deletePump = (pump_id, farm_id) => async dispatch => {
+    dispatch({ type: DELETE_PUMP_START });
+    try {
+        const deleted_id = await axiosWithAuth.delete(
+            `farms/${farm_id}/pumps/${pump_id}`
+        );
+        dispatch({
+            type: DELETE_PUMP_SUCCESS,
+            payload: deleted_id
+        });
+    } catch (error) {
+        dispatch({
+            type: DELETE_PUMP_FAILURE,
+            payload: error
+        });
+    }
+};
