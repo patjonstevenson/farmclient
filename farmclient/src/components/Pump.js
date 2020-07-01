@@ -1,7 +1,7 @@
 import React from "react";
 import Valve from "./Valve";
 import { ValveAdder } from "./Adders";
-import { Valves } from "./Valves";
+import Valves from "./Valves";
 
 export default props => {
     return (
@@ -10,8 +10,8 @@ export default props => {
             <div className="valves">
                 <h5>Valves</h5>
                 <ValveAdder />
+                <Valves pumpId={props.pump.id} />
                 {/* <button className="add-button">Add Valve</button> */}
-                <Valves />
                 {/* {props.pump.valves.map(valve => <Valve valve={valve} />)} */}
             </div>
         </div>
