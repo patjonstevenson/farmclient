@@ -9,7 +9,7 @@ export default props => {
             <h4>{props.pump.name}</h4>
             <div className="valves">
                 <h5>Valves</h5>
-                <ValveAdder />
+                {/* <ValveAdder /> */}
                 <Valves pumpId={props.pump.id} />
                 {/* <button className="add-button">Add Valve</button> */}
                 {/* {props.pump.valves.map(valve => <Valve valve={valve} />)} */}

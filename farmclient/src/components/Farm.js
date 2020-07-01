@@ -12,7 +12,7 @@ export default props => {
             <div className="pumps">
                 <h3> Pumps</h3>
                 {/* <button className="add-button">Add Pump</button> */}
-                <PumpAdder />
+                {/* {props.farm.id ? <PumpAdder /> : <></>} */}
                 <Pumps farmId={props.farm.id} />
                 {/* {props.farm.pumps.map(pump => <Pump pump={pump} />)} */}
             </div>

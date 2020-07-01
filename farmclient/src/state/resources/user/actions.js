@@ -88,10 +88,12 @@ export const fetchUserData = id => async dispatch => {
             type: FETCH_USER_DATA_SUCCESS,
             payload: userInfo.data
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: FETCH_USER_DATA_FAILURE,
             payload: error
         });
+        return 0;
     }
 };

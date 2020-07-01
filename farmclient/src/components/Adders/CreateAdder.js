@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import AdderForm from "./AdderForm";
+import { connect } from "react-redux";
 
 // !!!!! WHAT IS DERIVED??? !!!!!
-export default (AdderInfo, derived) => () => {
+// export default (AdderInfo, derived) => () => {
+export default (AdderInfo) => () => {
     const {
         name,
         displayName,
@@ -33,11 +35,11 @@ export default (AdderInfo, derived) => () => {
             >
                 Add {displayName}
             </button>
-            <AdderForm
-                derived={derived}
+            {<AdderForm
+                // derived={derived}
                 props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
             // props={actionFunction, exampleObject, types, switchFormVisibility}
-            />
+            />}
         </div>
     );
 }

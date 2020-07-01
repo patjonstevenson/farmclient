@@ -25,7 +25,8 @@ const Dashboard = ({ fetchUserData, ...props }) => {
     return (
         <div className="dashboard">
             <h1>Farms</h1>
-            <FarmAdder derived={{ user_id: props.id }} />
+            {/* <FarmAdder /> */}
+            {/* <FarmAdder derived={{ user_id: props.id }} /> */}
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
                 <Farms />
