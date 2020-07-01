@@ -15,10 +15,11 @@ const Dashboard = ({ fetchUserData, ...props }) => {
     // const user_id = 0;
 
     // FETCH USER DATA
-    useEffect(() => {
+    useEffect(async () => {
         console.log("PROPS: ", props.user.data.id);
         console.log("\nID in Dashboard useEffect: ", props.id);
-        fetchUserData(props.user.data.id);
+        const id = localStorage.getItem("userId");
+        await fetchUserData(id);
     }, []);
 
     console.log(props.id);
@@ -39,9 +40,9 @@ const Dashboard = ({ fetchUserData, ...props }) => {
 
 const mapStateToProps = state => {
     console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`);
-    if (state.farms) { console.log("state.farms in dashboard", state.farms); }
+    if (state.farms && state.farms.data) { console.log("state.farms in dashboard", state.farms); }
     return ({
-        id: state.user.id,
+        id: state.user && state.user.id ? state.user.id : null,
         user: state.user
     });
 }

@@ -107,7 +107,7 @@ const mapStateToProps = (state, props) => {
     console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parent_id_strings}`);
     console.log(`\nPARENT_IDS in ADDERFORM:\n${parent_ids}`);
     return {
-        user_id: state.user.data.id,
+        user_id: state.user.data ? state.user.data.id : null,
         parent_ids // eg [{ "farm_id": 3, "pump_id": 8 }]
     }
 }
