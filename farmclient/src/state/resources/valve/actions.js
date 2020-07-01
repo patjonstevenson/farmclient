@@ -19,7 +19,7 @@ import {
     DELETE_VALVE_SUCCESS,
     DELETE_VALVE_FAILURE
 } from "./action-types";
-import axiosWithAuth from "../../requests/axiosWithAuth";
+import axiosWithAuth from "../../../requests/axiosWithAuth";
 
 
 export const addValve = (valve, farm_id, pump_id) => async dispatch => {

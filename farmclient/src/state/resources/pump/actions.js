@@ -20,7 +20,7 @@ import {
     DELETE_PUMP_SUCCESS,
     DELETE_PUMP_FAILURE
 } from "./action-types";
-import axiosWithAuth from "../../requests/axiosWithAuth";
+import axiosWithAuth from "../../../requests/axiosWithAuth";
 
 // Can then import Farm from "......farm/functions";
 // and do Farm.fetchFarms() etc
