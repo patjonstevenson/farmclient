@@ -58,11 +58,17 @@ export default (state = initialStore, action) => {
                 error: null,
             };
         case ADD_FARM_SUCCESS:
+            console.log(`
+                STATE in ADD_FARM_SUCCESS:
+                ${state}
+                keys: ${Object.keys(state)}
+                state.data: ${state.data}
+            `);
             return {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: [...state.farms.data, action.payload],
+                data: [...state.data, action.payload],
             };
         case ADD_FARM_FAILURE:
             return {
@@ -84,7 +90,7 @@ export default (state = initialStore, action) => {
                 isFetching: false,
                 error: null,
                 data: [
-                    ...state.farms.data.filter(farm => farm.id !== action.payload.id),
+                    ...state.data.filter(farm => farm.id !== action.payload.id),
                     action.payload
                 ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
@@ -107,7 +113,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: state.farms.data.filter(farm => farm.id !== action.payload)
+                data: state.data.filter(farm => farm.id !== action.payload)
             };
         case DELETE_FARM_FAILURE:
             return {

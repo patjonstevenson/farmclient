@@ -62,7 +62,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: [...state.valves.data, action.payload],
+                data: [...state.data, action.payload],
             };
         case ADD_VALVE_FAILURE:
             return {
@@ -84,7 +84,7 @@ export default (state = initialStore, action) => {
                 isFetching: false,
                 error: null,
                 data: [
-                    ...state.valves.data.filter(valve => valve.id !== action.payload.id),
+                    ...state.data.filter(valve => valve.id !== action.payload.id),
                     action.payload
                 ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
@@ -107,7 +107,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: state.valves.data.filter(valve => valve.id !== action.payload)
+                data: state.data.filter(valve => valve.id !== action.payload)
             };
         case DELETE_VALVE_FAILURE:
             return {

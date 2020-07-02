@@ -47,9 +47,10 @@ export const addFarm = farm => async dispatch => {
     }
     try {
         const newFarm = await axiosWithAuth().post("farms", farm);
+        console.log(`\n**POST SUCCESS! NEW FARM: **\n${newFarm.data[0]}\n`);
         dispatch({
             type: ADD_FARM_SUCCESS,
-            payload: newFarm
+            payload: newFarm.data[0]
         });
         return 1;
     } catch (error) {
