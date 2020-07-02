@@ -53,7 +53,7 @@ export const FarmAdderInfo = {
         timezone: String
     },
     parentIdStrings: [],
-    actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
+    actionFunction: farm => addFarm(farm) //farm => { console.log("Added a farm!\n", farm); } 
 };
 export const PumpAdderInfo = {
     name: "pump",

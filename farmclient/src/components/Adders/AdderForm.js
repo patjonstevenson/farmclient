@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState, useEffect } from "react";
 
 export default ({ config, formVisibility, switchFormVisibility, props }) => {
     // TODO:
@@ -14,26 +13,33 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
     //      => receive actionFunction
 
     const {
-        actionFunction,
+        // actionFunction,
         exampleObject,
         types,
         parentIds
     } = config;
 
-    const userId = localStorage.getItem("userId")
-        ? localStorage.getItem("userId")
-        : props.userId
-            ? props.userId
+    const user_id = localStorage.getItem("user_id")
+        ? localStorage.getItem("user_id")
+        : props.user_id
+            ? props.user_id
             : null;
 
-    console.log("userId: ", userId);
+    console.log("user_id: ", user_id);
 
 
     const [thing, setThing] = useState(exampleObject);
 
+    // 1 if attempt successful
+    // 0 if no attempt made yet
+    // -1 if attempt failed
+    const [attempt, setAttempt] = useState(0);
+
+    useEffect(() => {
+        console.log(`\nATTEMPT: ${attempt}\n`);
+    }, [attempt]);
+
     const handleChanges = property => e => {
-        // TODO:
-        // Probably should make this polymorphic through closure
         setThing({
             ...thing,
             [property]: e.target.value
@@ -52,16 +58,24 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
                 });
             }
             // Send form object to the server
-            await actionFunction({ ...thing, ...parentIds, userId });
-            // Make form go away
-            switchFormVisibility();
-            // Reset form
-            setThing(exampleObject);
+            console.log("\n**Calling actionFunction with\n", { ...thing, ...parentIds, user_id });
+            console.log("\nAction Function: ", props.actionFunction);
+            const successful = await props.actionFunction({ ...thing, ...parentIds, user_id });
+            if (!successful) {
+                setAttempt(-1)
+            } else {
+                // Make form go away
+                switchFormVisibility();
+                // Reset form
+                setThing(exampleObject);
+                setAttempt(1);
+            }
         } catch (error) {
             // console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
             // console.log(`Occurred for property ${property}`);
-            console.log("ERROR in handleSubmit in AdderForm");
+            console.log(`\nERROR in handleSubmit in AdderForm\n${error}\n`);
             console.log("thing:\n", thing);
+            setAttempt(-1);
         }
     };
     console.log("props in AdderForm: ", props);
@@ -74,6 +88,8 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
                 : "invisible"
             }`}
         >
+            {/* Could add an error message in here somewhere, connected
+                to a string from useState */}
             <form onSubmit={handleSubmit}>
 
                 {/* Create input fields dynamically */}
@@ -116,7 +132,7 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
 //     console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parentIdStrings}`);
 //     console.log(`\nPARENT_IDS in ADDERFORM:\n${parentIds}`);
 //     return {
-//         userId: state.user.data ? state.user.data.id : null,
+//         user_id: state.user.data ? state.user.data.id : null,
 //         parentIds: parentIds ? parentIds : null // eg [{ "farm_id": 3, "pump_id": 8 }]
 //     }
 // }

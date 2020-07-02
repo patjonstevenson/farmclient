@@ -17,7 +17,7 @@ export default (config) => {
             {}
         );
         return ({
-            userId: state.user.data.id,
+            user_id: state.user.data.id,
             parentIds
         });
     };
@@ -32,7 +32,7 @@ export default (config) => {
             displayName,
             exampleObject,
             types
-        } = config;
+        } = config; // Through closure
 
         const [formVisibility, setFormVisibility] = useState(false);
 

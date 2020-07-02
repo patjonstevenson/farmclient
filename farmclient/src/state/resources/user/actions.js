@@ -49,7 +49,7 @@ export const login = credentials => async dispatch => {
         console.log("SUCCESSFUL LOGIN");
         console.log("RESPONSE: ", res);
         localStorage.setItem("token", token);
-        localStorage.setItem("userId", user.id);
+        localStorage.setItem("user_id", user.id);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {
@@ -89,7 +89,7 @@ export const fetchUserData = id => async dispatch => {
         // console.log(`\nuserInfo in fetchUserData\n${Object.keys(userInfo.data)}\n`);
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: res.data.data//userInfo//.data
+            payload: res.data//userInfo//.data
         });
         return 1;
     } catch (error) {

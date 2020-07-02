@@ -35,7 +35,7 @@ import axiosWithAuth from "../../../requests/axiosWithAuth";
 // JUST GET THEM ALL TOGETHER FOR NOW IN USER FUNCTIONS
 
 // ADD
-export const addFarm = (farm) => async dispatch => {
+export const addFarm = farm => async dispatch => {
     dispatch({ type: ADD_FARM_START });
     console.log("STARTING ADD FARM.\nfarm: ", farm);
     if (!farm.user_id) {
@@ -46,7 +46,7 @@ export const addFarm = (farm) => async dispatch => {
         return 0;
     }
     try {
-        const newFarm = await axiosWithAuth.post("farms", farm);
+        const newFarm = await axiosWithAuth().post("farms", farm);
         dispatch({
             type: ADD_FARM_SUCCESS,
             payload: newFarm
