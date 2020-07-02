@@ -52,8 +52,8 @@ export const FarmAdderInfo = {
         // user_id: Number,
         timezone: String
     },
-    parent_id_strings: [],
-    actionFunction: addFarm //farm => { console.log("Added a farm!\n", farm); }
+    parentIdStrings: [],
+    actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
 };
 export const PumpAdderInfo = {
     name: "pump",
@@ -66,7 +66,7 @@ export const PumpAdderInfo = {
         name: String,
         farm_id: Number
     },
-    parent_id_strings: ["farm_id"],
+    parentIdStrings: ["farm_id"],
     actionFunction: addPump //pump => { console.log("Added a pump!\n", pump); }
 };
 export const ValveAdderInfo = {
@@ -80,6 +80,6 @@ export const ValveAdderInfo = {
         name: String,
         pump_id: Number
     },
-    parent_id_strings: ["farm_id", "pump_id"],
+    parentIdStrings: ["farm_id", "pump_id"],
     actionFunction: addValve //valve => { console.log("Added a valve!\n", valve); }
 };

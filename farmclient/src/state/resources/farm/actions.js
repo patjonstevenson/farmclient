@@ -38,17 +38,26 @@ import axiosWithAuth from "../../../requests/axiosWithAuth";
 export const addFarm = (farm) => async dispatch => {
     dispatch({ type: ADD_FARM_START });
     console.log("STARTING ADD FARM.\nfarm: ", farm);
+    if (!farm.user_id) {
+        dispatch({
+            type: ADD_FARM_FAILURE,
+            payload: { message: "user_id required inside object to add farm" }
+        })
+        return 0;
+    }
     try {
         const newFarm = await axiosWithAuth.post("farms", farm);
         dispatch({
             type: ADD_FARM_SUCCESS,
             payload: newFarm
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: ADD_FARM_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 

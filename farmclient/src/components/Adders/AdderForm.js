@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+const actionFunction = require()
+
 const Form = (props) => {
     // TODO:
     // we need to know the following:
@@ -14,14 +16,22 @@ const Form = (props) => {
     //      => receive actionFunction
 
     const {
-        user_id,
         actionFunction,
         exampleObject,
         types,
         switchFormVisibility,
         formVisibility,
-        parent_ids
-    } = props;
+        parentIds
+    } = props.props;
+
+    const userId = localStorage.getItem("userId")
+        ? localStorage.getItem("userId")
+        : props.userId
+            ? props.userId
+            : null;
+
+    console.log("userId: ", userId);
+
 
     const [thing, setThing] = useState(exampleObject);
 
@@ -34,7 +44,7 @@ const Form = (props) => {
         });
     };
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
         try {
@@ -46,7 +56,7 @@ const Form = (props) => {
                 });
             }
             // Send form object to the server
-            actionFunction({ ...thing, ...parent_ids, user_id });
+            await actionFunction({ ...thing, ...parentIds, userId });
             // Make form go away
             switchFormVisibility();
             // Reset form
@@ -75,14 +85,17 @@ const Form = (props) => {
                 Once exampleObject is changed to an arrray in 
                 AdderRegistry, change the following lines to just
                 the array name instead of Object.keys() */}
-                {Object.keys(exampleObject).map(property => {
-                    return (
-                        <div className="adder-form-input">
-                            <label htmlFor={thing[property]}>{property}</label>
-                            <input value={thing[property]} onChange={handleChanges(property)} />
-                        </div>
-                    );
-                })}
+                {exampleObject
+                    ? Object.keys(exampleObject).map(property => {
+                        return (
+                            <div className="adder-form-input">
+                                <label htmlFor={thing[property]}>{property}</label>
+                                <input value={thing[property]} onChange={handleChanges(property)} />
+                            </div>
+                        );
+
+                    }) : <h3>Loading form...</h3>
+                }
 
                 <button
                     className={"form-button"}
@@ -98,17 +111,17 @@ const Form = (props) => {
 };
 
 const mapStateToProps = (state, props) => {
-    const { parent_id_strings } = props.props;
-    // parent_ids.
-    const parent_ids = parent_id_strings.reduce(
-        (ids, parent_id) => ({ ...ids, [parent_id]: state[parent_id] }),
+    const { parentIdStrings } = props.props;
+    // parentIds.
+    const parentIds = parentIdStrings.reduce(
+        (ids, parentId) => ({ ...ids, [parentId]: state[parentId] }),
         {}
     );
-    console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parent_id_strings}`);
-    console.log(`\nPARENT_IDS in ADDERFORM:\n${parent_ids}`);
+    console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parentIdStrings}`);
+    console.log(`\nPARENT_IDS in ADDERFORM:\n${parentIds}`);
     return {
-        user_id: state.user.data ? state.user.data.id : null,
-        parent_ids // eg [{ "farm_id": 3, "pump_id": 8 }]
+        userId: state.user.data ? state.user.data.id : null,
+        parentIds: parentIds ? parentIds : null // eg [{ "farm_id": 3, "pump_id": 8 }]
     }
 }
 
