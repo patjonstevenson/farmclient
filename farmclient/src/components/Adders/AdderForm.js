@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-const actionFunction = require()
-
-const Form = (props) => {
+export default ({ config, formVisibility, switchFormVisibility, props }) => {
     // TODO:
     // we need to know the following:
 
@@ -19,10 +17,8 @@ const Form = (props) => {
         actionFunction,
         exampleObject,
         types,
-        switchFormVisibility,
-        formVisibility,
         parentIds
-    } = props.props;
+    } = config;
 
     const userId = localStorage.getItem("userId")
         ? localStorage.getItem("userId")
@@ -110,19 +106,19 @@ const Form = (props) => {
     );
 };
 
-const mapStateToProps = (state, props) => {
-    const { parentIdStrings } = props.props;
-    // parentIds.
-    const parentIds = parentIdStrings.reduce(
-        (ids, parentId) => ({ ...ids, [parentId]: state[parentId] }),
-        {}
-    );
-    console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parentIdStrings}`);
-    console.log(`\nPARENT_IDS in ADDERFORM:\n${parentIds}`);
-    return {
-        userId: state.user.data ? state.user.data.id : null,
-        parentIds: parentIds ? parentIds : null // eg [{ "farm_id": 3, "pump_id": 8 }]
-    }
-}
+// const mapStateToProps = (state, props) => {
+//     const { parentIdStrings } = props.props;
+//     // parentIds.
+//     const parentIds = parentIdStrings.reduce(
+//         (ids, parentId) => ({ ...ids, [parentId]: state[parentId] }),
+//         {}
+//     );
+//     console.log(`\nPARENT_ID_STRINGS in ADDERFORM:\n${parentIdStrings}`);
+//     console.log(`\nPARENT_IDS in ADDERFORM:\n${parentIds}`);
+//     return {
+//         userId: state.user.data ? state.user.data.id : null,
+//         parentIds: parentIds ? parentIds : null // eg [{ "farm_id": 3, "pump_id": 8 }]
+//     }
+// }
 
-export default connect(mapStateToProps, {})(Form);
+// export default connect(mapStateToProps, {})(Form);

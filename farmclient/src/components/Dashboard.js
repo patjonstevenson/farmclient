@@ -15,11 +15,15 @@ const Dashboard = ({ fetchUserData, ...props }) => {
     // const user_id = 0;
 
     // FETCH USER DATA
-    useEffect(async () => {
-        console.log("PROPS: ", props.user.data.id);
-        console.log("\nID in Dashboard useEffect: ", props.id);
+    useEffect(() => {
+        // console.log("PROPS: ", props.user.data.id);
+        // console.log("\nID in Dashboard useEffect: ", props.id);
         const id = localStorage.getItem("userId");
-        await fetchUserData(id);
+
+        (async id => { await fetchUserData(id); })(id)
+        // await fetchUserData(id);
+
+
     }, []);
 
     console.log(props.id);

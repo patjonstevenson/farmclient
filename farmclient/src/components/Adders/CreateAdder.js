@@ -37,7 +37,7 @@ export default (AdderInfo) => () => {
             </button>
             <AdderForm
                 // derived={derived}
-                props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
+                props={{ ...AdderInfo, formVisibility, switchFormVisibility }}
             // props={actionFunction, exampleObject, types, switchFormVisibility}
             />
         </div>

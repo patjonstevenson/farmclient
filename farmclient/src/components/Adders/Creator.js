@@ -1,26 +1,32 @@
-import connect from "react-redux";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import AdderForm from "./AdderForm";
 
-export default ({ config }) => {
+export default (config) => {
     const {
         actionFunction
     } = config;
 
-    const mapStateToProps = (state, props) => {
-        const { parentIdStrings } = props.props;
+    const mapStateToProps = state => {
+        const { parentIdStrings } = config;
+        // console.log("PROPS in mapStateToProps in Creator.js:\n", props);
+        console.log("STATE in mapStateToProps in Creator.js:\n", state);
+        console.log("CONFIG in mapStateToProps in Creator.js:\n", config);
         const parentIds = parentIdStrings.reduce(
             (ids, parentId) => ({ ...ids, [parentId]: state[parentId] }),
             {}
         );
         return ({
-            userId = state.user.data.id,
+            userId: state.user.data.id,
             parentIds
         });
     };
 
 
-    const PresentationalComponent = props => {
-        const { config, actionFunction, ...props } = props
+    const PresentationalComponent = (props) => {
+        // const { config, actionFunction, ...props } = props;
 
+        // const { actionFunction } = props;
         const {
             name,
             displayName,
@@ -39,7 +45,7 @@ export default ({ config }) => {
             switchFormVisibility();
         }
 
-        console.log(`AdderInfo in CreateAdder:\n${AdderInfo}`)
+        // console.log(`AdderInfo in CreateAdder:\n${AdderInfo}`)
         console.log(`exampleObject in CreateAdder before being passed to AdderForm:\n${exampleObject}`);
 
         return (
@@ -52,9 +58,10 @@ export default ({ config }) => {
                 </button>
                 <AdderForm
                     // derived={derived}
+                    props={props}
                     config={config}
-                    switchFormVisibility={switchFormVisibility}
                     formVisibility={formVisibility}
+                    switchFormVisibility={switchFormVisibility}
                 // props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
                 // props={actionFunction, exampleObject, types, switchFormVisibility}
                 />
