@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import AdderForm from "./AdderForm";
+import AdderForm from "./UpdaterForm";
 
 export default (config) => {
     const {

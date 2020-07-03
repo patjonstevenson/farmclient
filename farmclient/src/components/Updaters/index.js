@@ -1,7 +1,7 @@
 import CreateAdder from "./CreateAdder";
-import Creator from "./Creator";
+import Creator from "./CreateUpdater";
 // import AdderRegistry from "./AdderRegistry";
-import { FarmAdderInfo, PumpAdderInfo, ValveAdderInfo } from "./AdderRegistry";
+import { FarmAdderInfo, PumpAdderInfo, ValveAdderInfo } from "./UpdaterRegistry";
 
 export const FarmAdder = Creator(FarmAdderInfo);
 export const ValveAdder = Creator(ValveAdderInfo);

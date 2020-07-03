@@ -21,6 +21,7 @@ import {
     DELETE_PUMP_FAILURE
 } from "./action-types";
 import axiosWithAuth from "../../../requests/axiosWithAuth";
+import StrategySearch from "../../../components/StrategyAssigner/StrategySearch";
 
 // Can then import Farm from "......farm/functions";
 // and do Farm.fetchFarms() etc
@@ -70,7 +71,7 @@ export const addPump = pump => async dispatch => {
 };
 
 // PUT
-export const updatePump = (changes, farm_id, pump_id) => async dispatch => {
+export const updatePump = (changes, pump_id) => async dispatch => {
     dispatch({ type: UPDATE_PUMP_START });
     try {
         const updated = await axiosWithAuth().post(
@@ -81,16 +82,18 @@ export const updatePump = (changes, farm_id, pump_id) => async dispatch => {
             type: UPDATE_PUMP_SUCCESS,
             payload: updated
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: UPDATE_PUMP_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 
 // DELETE
-export const deletePump = (pump_id, farm_id) => async dispatch => {
+export const deletePump = (pump_id) => async dispatch => {
     dispatch({ type: DELETE_PUMP_START });
     try {
         const deleted_id = await axiosWithAuth().delete(
@@ -100,10 +103,30 @@ export const deletePump = (pump_id, farm_id) => async dispatch => {
             type: DELETE_PUMP_SUCCESS,
             payload: deleted_id
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: DELETE_PUMP_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
+
+// ASSIGN STRATEGY TO PUMP
+export const assignStrategy = (pump_id, strategy_id) => async dispatch => {
+    try {
+        const successful = await updatePump({ strategy_id }, pump_id);
+        if (!successful) {
+            console.log("* ERROR ASSIGNING STRATEGY");
+            return 0;
+        }
+        console.log("* STRATEGY ASSIGNED SUCCESSFULLY!")
+        return 1;
+    } catch (error) {
+        console.log("* ERROR ASSIGNING STRATEGY");
+        console.log("ERROR: ", error);
+        return 0;
+    }
+
+}
