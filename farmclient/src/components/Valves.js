@@ -5,11 +5,12 @@ import { connect } from "react-redux";
 // ({ valves })
 export const Valves = props => {
     console.log("props in Valves: ", props);
+    const valves = props.valves.filter(v => v.pump_id === props.pumpId);
     return (
         <div className="valves">
             {
-                props.valves
-                    ? props.valves.map(valve => <Valve valve={valve} />)
+                valves
+                    ? valves.map(valve => <Valve valve={valve} />)
                     : <h3>Loading Valves...</h3>
             }
         </div>

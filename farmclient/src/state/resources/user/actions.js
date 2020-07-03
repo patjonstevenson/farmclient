@@ -49,6 +49,7 @@ export const login = credentials => async dispatch => {
         console.log("SUCCESSFUL LOGIN");
         console.log("RESPONSE: ", res);
         localStorage.setItem("token", token);
+        localStorage.setItem("user_id", user.id);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: {
@@ -83,15 +84,19 @@ export const fetchUserData = id => async dispatch => {
     dispatch({ type: FETCH_USER_DATA_START });
     try {
         const res = await axiosWithAuth().get(`users/${id}`);
-        const userInfo = res.data;
+        // const userInfo = res.data;
+        console.log(`\nRES in fetchUserData\n${Object.keys(res)}\n`);
+        // console.log(`\nuserInfo in fetchUserData\n${Object.keys(userInfo.data)}\n`);
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: userInfo.data
+            payload: res.data//userInfo//.data
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: FETCH_USER_DATA_FAILURE,
             payload: error
         });
+        return 0;
     }
 };

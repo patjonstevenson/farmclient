@@ -62,7 +62,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: [...state.strategies.data, action.payload],
+                data: [...state.data, action.payload],
             };
         case ADD_STRATEGY_FAILURE:
             return {
@@ -84,7 +84,7 @@ export default (state = initialStore, action) => {
                 isFetching: false,
                 error: null,
                 data: [
-                    ...state.strategies.data.filter(strategy => strategy.id !== action.payload.id),
+                    ...state.data.filter(strategy => strategy.id !== action.payload.id),
                     action.payload
                 ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
@@ -107,7 +107,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: state.strategies.data.filter(strategy => strategy.id !== action.payload)
+                data: state.data.filter(strategy => strategy.id !== action.payload)
             };
         case DELETE_STRATEGY_FAILURE:
             return {

@@ -68,20 +68,20 @@ export default (state = initialStore, action) => {
 
                 isFetching: false,
                 error: null,
-                data: [...state.pumps.data, action.payload],
+                data: [...state.data, action.payload],
                 // pumpsById: {
-                //     ...state.pumps.byId,
+                //     ...state.byId,
                 //     [action.payload.id]: action.payload
                 // },
                 // pumpsByFarmId: action.payload.farmId
                 //     ? {
-                //         ...state.pumps.byFarmId,
+                //         ...state.byFarmId,
                 //         [action.payload.farmId]: [
-                //             ...state.pumpsByFarmId[action.payload.farmId],
+                //             ...stateByFarmId[action.payload.farmId],
                 //             action.payload
                 //         ]
                 //     } : {
-                //         ...state.pumps.byFarmId,
+                //         ...state.byFarmId,
                 //     }
             };
         case ADD_PUMP_FAILURE:
@@ -104,7 +104,7 @@ export default (state = initialStore, action) => {
                 isFetching: false,
                 error: null,
                 data: [
-                    ...state.pumps.data.filter(pump => pump.id !== action.payload.id),
+                    ...state.data.filter(pump => pump.id !== action.payload.id),
                     action.payload
                 ].sort((a, b) => a.id > b.id ? 1 : -1),
             };
@@ -127,7 +127,7 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: state.pumps.data.filter(pump => pump.id !== action.payload)
+                data: state.data.filter(pump => pump.id !== action.payload)
             };
         case DELETE_PUMP_FAILURE:
             return {

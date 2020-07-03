@@ -16,16 +16,22 @@ const Dashboard = ({ fetchUserData, ...props }) => {
 
     // FETCH USER DATA
     useEffect(() => {
-        console.log("PROPS: ", props.user.data.id);
-        console.log("\nID in Dashboard useEffect: ", props.id);
-        fetchUserData(props.user.data.id);
+        // console.log("PROPS: ", props.user.data.id);
+        // console.log("\nID in Dashboard useEffect: ", props.id);
+        const id = localStorage.getItem("userId");
+
+        (async id => { await fetchUserData(id); })(id)
+        // await fetchUserData(id);
+
+
     }, []);
 
     console.log(props.id);
     return (
         <div className="dashboard">
             <h1>Farms</h1>
-            <FarmAdder derived={{ user_id: props.id }} />
+            <FarmAdder />
+            {/* <FarmAdder derived={{ user_id: props.id }} /> */}
             {/* <button className="add-button">Add Farm</button> */}
             <div className="farms">
                 <Farms />
@@ -38,9 +44,9 @@ const Dashboard = ({ fetchUserData, ...props }) => {
 
 const mapStateToProps = state => {
     console.log(`\nSTATE in DASHBOARD:\n${Object.keys(state)}\n`);
-    if (state.farms) { console.log("state.farms in dashboard", state.farms); }
+    if (state.farms && state.farms.data) { console.log("state.farms in dashboard", state.farms); }
     return ({
-        id: state.user.id,
+        id: state.user && state.user.id ? state.user.id : null,
         user: state.user
     });
 }

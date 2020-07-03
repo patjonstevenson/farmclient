@@ -3,13 +3,14 @@ import Pump from "./Pump";
 import { connect } from "react-redux";
 
 // ({ pumps })
-export const Pumps = (props) => {
+const Pumps = props => {
     console.log("props in Pumps: ", props);
+    const pumps = props.pumps.filter(pump => pump.farm_id === props.farmId)
     return (
         <div className="pumps">
             {
-                props.pumps
-                    ? props.pumps.map(pump => <Pump pump={pump} />)
+                pumps
+                    ? pumps.map(pump => <Pump pump={pump} />)
                     : <h3>Loading Pumps...</h3>
             }
         </div>
@@ -19,8 +20,8 @@ export const Pumps = (props) => {
 const mapStateToProps = state => {
     console.log("\nSTATE in pumps:\n", state);
     return ({
-        pumps: state.pumps.data
+        pumps: state.pumps.data ? state.pumps.data : []
     });
 }
 
-export default connect(mapStateToProps)(Pumps);
+export default connect(mapStateToProps, {})(Pumps);

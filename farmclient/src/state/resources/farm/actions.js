@@ -35,20 +35,30 @@ import axiosWithAuth from "../../../requests/axiosWithAuth";
 // JUST GET THEM ALL TOGETHER FOR NOW IN USER FUNCTIONS
 
 // ADD
-export const addFarm = (farm) => async dispatch => {
+export const addFarm = farm => async dispatch => {
     dispatch({ type: ADD_FARM_START });
     console.log("STARTING ADD FARM.\nfarm: ", farm);
+    if (!farm.user_id) {
+        dispatch({
+            type: ADD_FARM_FAILURE,
+            payload: { message: "user_id required inside object to add farm" }
+        })
+        return 0;
+    }
     try {
-        const newFarm = await axiosWithAuth.post("farms", farm);
+        const newFarm = await axiosWithAuth().post("farms", farm);
+        console.log(`\n**POST SUCCESS! NEW FARM: **\n${newFarm.data[0]}\n`);
         dispatch({
             type: ADD_FARM_SUCCESS,
-            payload: newFarm
+            payload: newFarm.data
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: ADD_FARM_FAILURE,
             payload: error
         });
+        return 0;
     }
 };
 
@@ -56,7 +66,7 @@ export const addFarm = (farm) => async dispatch => {
 export const updateFarm = (changes, farm_id) => async dispatch => {
     dispatch({ type: UPDATE_FARM_START });
     try {
-        const updated = await axiosWithAuth.put(
+        const updated = await axiosWithAuth().put(
             `farms/${farm_id}`,
             changes
         );
@@ -76,7 +86,7 @@ export const updateFarm = (changes, farm_id) => async dispatch => {
 export const deleteFarm = (farm_id) => async dispatch => {
     dispatch({ type: DELETE_FARM_START });
     try {
-        const deleted_id = await axiosWithAuth.delete(
+        const deleted_id = await axiosWithAuth().delete(
             `farms/${farm_id}`
         );
         dispatch({
