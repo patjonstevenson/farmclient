@@ -3,7 +3,7 @@ import SearchInput from "./SearchInput";
 import SearchResults from "./SearchResults";
 import { updateFarm } from "../../state/resources/farm/actions";
 
-export default ({ assignStrategy, updatePump, pump_id, strategies }) => {
+export default ({ switchAssigning, assignStrategy, updatePump, pump_id, strategies }) => {
     const [searchTerm, setSearchTerm] = useState("");
     console.log("Strategies: ", strategies);
 
@@ -12,7 +12,14 @@ export default ({ assignStrategy, updatePump, pump_id, strategies }) => {
         console.log("strategy_id: ", strategy_id);
         console.log("pump_id: ", pump_id);
         console.log("updatePump: ", updatePump)
-        await updatePump({ strategy_id }, pump_id);
+        try {
+            const successful = await updatePump({ strategy_id }, pump_id);
+            if (!successful) { throw new Error(); }
+            switchAssigning();
+        } catch (error) {
+            console.log("\nERROR assigning strategy:\n", error);
+        }
+
     }
 
     return (

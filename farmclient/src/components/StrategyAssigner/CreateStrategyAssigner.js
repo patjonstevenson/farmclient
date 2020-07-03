@@ -29,7 +29,7 @@ export default (pump_id) => {
         return (
             <div className="strategy-assigner">
                 <button onClick={switchAssigning}>Assign Strategy</button>
-                {assigning && <Search strategies={props.strategies} updatePump={props.updatePump} pump_id={pump_id} />}
+                {assigning && <Search switchAssigning={switchAssigning} strategies={props.strategies} updatePump={props.updatePump} pump_id={pump_id} />}
             </div>
         );
     }
