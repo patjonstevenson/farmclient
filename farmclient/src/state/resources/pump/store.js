@@ -5,9 +5,10 @@ export default {
             {
                 id: null, // pump_id
                 name: "",
-                strategy: null // strategy_id,
-                // farm_id: null, // ?
-                valves: [ valveId1, valveId2, etc ]
+                strategy_id: null,
+                farm_id: null, // ?
+                // valves: [ valveId1, valveId2, etc ]
+                user_id: null
             }
        ]
    */

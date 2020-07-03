@@ -60,26 +60,26 @@ export const PumpAdderInfo = {
     displayName: "Pump",
     exampleObject: {
         name: "",
-        farm_id: ""
+
     },
     types: {
         name: String,
-        farm_id: Number
+
     },
     parentIdStrings: ["farm_id"],
-    actionFunction: addPump //pump => { console.log("Added a pump!\n", pump); }
+    actionFunction: pump => addPump(pump) //pump => { console.log("Added a pump!\n", pump); }
 };
 export const ValveAdderInfo = {
     name: "valve",
     displayName: "Valve",
     exampleObject: {
         name: "",
-        pump_id: ""
+
     },
     types: {
         name: String,
-        pump_id: Number
+
     },
     parentIdStrings: ["farm_id", "pump_id"],
-    actionFunction: addValve //valve => { console.log("Added a valve!\n", valve); }
+    actionFunction: valve => addValve(valve) //valve => { console.log("Added a valve!\n", valve); }
 };

@@ -35,22 +35,37 @@ import axiosWithAuth from "../../../requests/axiosWithAuth";
 // JUST GET THEM ALL TOGETHER FOR NOW IN USER FUNCTIONS
 
 // ADD
-export const addPump = (pump, farm_id) => async dispatch => {
+export const addPump = pump => async dispatch => {
     dispatch({ type: ADD_PUMP_START });
+    if (!pump.user_id) {
+        dispatch({
+            type: ADD_PUMP_FAILURE,
+            payload: { message: "user_id required inside object to add pump" }
+        })
+        return 0;
+    }
     try {
-        const newPump = await axiosWithAuth.post(
-            `farms/${farm_id}/pumps`,
+        const newPump = await axiosWithAuth().post(
+            `pumps`,
             pump
         );
         dispatch({
             type: ADD_PUMP_SUCCESS,
-            payload: newPump
+            payload: newPump.data[0]
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: ADD_PUMP_FAILURE,
             payload: error
         });
+        console.log(`
+            ** Error Adding Pump **
+            Error:
+            ${error}
+        `);
+        console.log("Error: ", error);
+        return 0;
     }
 };
 
@@ -58,8 +73,8 @@ export const addPump = (pump, farm_id) => async dispatch => {
 export const updatePump = (changes, farm_id, pump_id) => async dispatch => {
     dispatch({ type: UPDATE_PUMP_START });
     try {
-        const updated = await axiosWithAuth.post(
-            `farms/${farm_id}/pumps/${pump_id}`,
+        const updated = await axiosWithAuth().post(
+            `pumps/${pump_id}`,
             changes
         );
         dispatch({
@@ -78,8 +93,8 @@ export const updatePump = (changes, farm_id, pump_id) => async dispatch => {
 export const deletePump = (pump_id, farm_id) => async dispatch => {
     dispatch({ type: DELETE_PUMP_START });
     try {
-        const deleted_id = await axiosWithAuth.delete(
-            `farms/${farm_id}/pumps/${pump_id}`
+        const deleted_id = await axiosWithAuth().delete(
+            `pumps/${pump_id}`
         );
         dispatch({
             type: DELETE_PUMP_SUCCESS,

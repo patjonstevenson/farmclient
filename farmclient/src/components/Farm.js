@@ -13,6 +13,7 @@ export default props => {
                 <h3> Pumps</h3>
                 {/* <button className="add-button">Add Pump</button> */}
                 {/* {props.farm.id ? <PumpAdder /> : <></>} */}
+                <PumpAdder parentIds={{ farm_id: props.farm.id }} />
                 <Pumps farmId={props.farm.id} />
                 {/* {props.farm.pumps.map(pump => <Pump pump={pump} />)} */}
             </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default ({ config, formVisibility, switchFormVisibility, props }) => {
+export default ({ config, formVisibility, switchFormVisibility, parentIds, props }) => {
     // TODO:
     // we need to know the following:
 
@@ -16,14 +16,14 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
         // actionFunction,
         exampleObject,
         types,
-        parentIds
+        // parentIds
     } = config;
 
-    const user_id = localStorage.getItem("user_id")
+    const user_id = Number(localStorage.getItem("user_id")
         ? localStorage.getItem("user_id")
         : props.user_id
             ? props.user_id
-            : null;
+            : null);
 
     console.log("user_id: ", user_id);
 
@@ -58,9 +58,9 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
                 });
             }
             // Send form object to the server
-            console.log("\n**Calling actionFunction with\n", { ...thing, ...parentIds, user_id });
+            console.log("\n**Calling actionFunction with\n", { ...thing, ...props.parentIds, user_id });
             console.log("\nAction Function: ", props.actionFunction);
-            const successful = await props.actionFunction({ ...thing, ...parentIds, user_id });
+            const successful = await props.actionFunction({ ...thing, ...props.parentIds, user_id });
             if (!successful) {
                 setAttempt(-1)
             } else {

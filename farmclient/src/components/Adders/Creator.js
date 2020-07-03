@@ -4,7 +4,8 @@ import AdderForm from "./AdderForm";
 
 export default (config) => {
     const {
-        actionFunction
+        actionFunction,
+        name
     } = config;
 
     const mapStateToProps = state => {
@@ -12,13 +13,19 @@ export default (config) => {
         // console.log("PROPS in mapStateToProps in Creator.js:\n", props);
         console.log("STATE in mapStateToProps in Creator.js:\n", state);
         console.log("CONFIG in mapStateToProps in Creator.js:\n", config);
-        const parentIds = parentIdStrings.reduce(
-            (ids, parentId) => ({ ...ids, [parentId]: state[parentId] }),
-            {}
-        );
+        // const parentIds = parentIdStrings.reduce(
+        //     (ids, parentId) => ({ ...ids, [parentId]: state[`${name}s`][data].find(p => p.id === )[parentId] }),
+        //     {}
+        // );
+        // console.log(`
+        //     parentIds in mapStateToProps in Creator.js:
+        //     ${parentIds}
+        //     keys: ${Object.keys(parentIds)}
+        // `);
+        // console.log("parentIds: ", parentIds);
         return ({
             user_id: state.user.data.id,
-            parentIds
+            // parentIds
         });
     };
 
@@ -27,6 +34,7 @@ export default (config) => {
         // const { config, actionFunction, ...props } = props;
 
         // const { actionFunction } = props;
+        // const { parentIds } = props;
         const {
             name,
             displayName,

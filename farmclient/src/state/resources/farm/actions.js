@@ -66,7 +66,7 @@ export const addFarm = farm => async dispatch => {
 export const updateFarm = (changes, farm_id) => async dispatch => {
     dispatch({ type: UPDATE_FARM_START });
     try {
-        const updated = await axiosWithAuth.put(
+        const updated = await axiosWithAuth().put(
             `farms/${farm_id}`,
             changes
         );
@@ -86,7 +86,7 @@ export const updateFarm = (changes, farm_id) => async dispatch => {
 export const deleteFarm = (farm_id) => async dispatch => {
     dispatch({ type: DELETE_FARM_START });
     try {
-        const deleted_id = await axiosWithAuth.delete(
+        const deleted_id = await axiosWithAuth().delete(
             `farms/${farm_id}`
         );
         dispatch({
