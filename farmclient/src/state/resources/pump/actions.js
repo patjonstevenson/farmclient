@@ -51,7 +51,7 @@ export const addPump = pump => async dispatch => {
         );
         dispatch({
             type: ADD_PUMP_SUCCESS,
-            payload: newPump.data[0]
+            payload: newPump.data
         });
         return 1;
     } catch (error) {

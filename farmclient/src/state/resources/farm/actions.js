@@ -50,7 +50,7 @@ export const addFarm = farm => async dispatch => {
         console.log(`\n**POST SUCCESS! NEW FARM: **\n${newFarm.data[0]}\n`);
         dispatch({
             type: ADD_FARM_SUCCESS,
-            payload: newFarm.data[0]
+            payload: newFarm.data
         });
         return 1;
     } catch (error) {

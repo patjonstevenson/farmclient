@@ -19,9 +19,9 @@ const Pumps = props => {
 
 const mapStateToProps = state => {
     console.log("\nSTATE in pumps:\n", state);
-    return {
-        pumps: state.pumps.data
-    };
+    return ({
+        pumps: state.pumps.data ? state.pumps.data : []
+    });
 }
 
 export default connect(mapStateToProps, {})(Pumps);

@@ -32,13 +32,13 @@ export const addValve = (valve) => async dispatch => {
         return 0;
     }
     try {
-        const newValve = await axiosWithAuth.post(
+        const newValve = await axiosWithAuth().post(
             `valves`,
             valve
         );
         dispatch({
             type: ADD_VALVE_SUCCESS,
-            payload: newValve
+            payload: newValve.data
         });
         return 1;
     } catch (error) {
@@ -53,7 +53,7 @@ export const addValve = (valve) => async dispatch => {
 export const updateValve = (changes, valve_id) => async dispatch => {
     dispatch({ type: UPDATE_VALVE_START });
     try {
-        const updated = await axiosWithAuth.post(
+        const updated = await axiosWithAuth().post(
             `valves/${valve_id}`,
             changes
         );
@@ -73,7 +73,7 @@ export const updateValve = (changes, valve_id) => async dispatch => {
 export const deleteValve = (valve_id, farm_id, pump_id) => async dispatch => {
     dispatch({ type: DELETE_VALVE_START });
     try {
-        const deleted_id = await axiosWithAuth.delete(
+        const deleted_id = await axiosWithAuth().delete(
             `valves/${valve_id}`
         );
         dispatch({

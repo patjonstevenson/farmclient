@@ -37,8 +37,8 @@ export default {
     addTactic: (tactic, strategy_id) => async dispatch => {
         dispatch({ type: ADD_TACTIC_START });
         try {
-            const newTactic = await axiosWithAuth.post(
-                `strategies/${strategy_id}/tactics`,
+            const newTactic = await axiosWithAuth().post(
+                `tactics`,
                 tactic
             );
             dispatch({
@@ -57,8 +57,8 @@ export default {
     updateTactic: (changes, strategy_id, tactic_id) => async dispatch => {
         dispatch({ type: UPDATE_TACTIC_START });
         try {
-            const updated = await axiosWithAuth.post(
-                `strategies/${strategy_id}/tactics/${tactic_id}`,
+            const updated = await axiosWithAuth().post(
+                `tactics/${tactic_id}`,
                 changes
             );
             dispatch({
@@ -77,8 +77,8 @@ export default {
     deleteTactic: (strategy_id, tactic_id) => async dispatch => {
         dispatch({ type: DELETE_TACTIC_START });
         try {
-            const deleted_id = await axiosWithAuth.delete(
-                `strategies/${strategy_id}/tactics/${tactic_id}`
+            const deleted_id = await axiosWithAuth().delete(
+                `tactics/${tactic_id}`
             );
             dispatch({
                 type: DELETE_TACTIC_SUCCESS,
