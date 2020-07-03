@@ -61,7 +61,7 @@ export const addPump = pump => async dispatch => {
             payload: error
         });
         console.log(`
-            ** Error Adding Pump **
+            ** Error Adding  Pump **
             Error:
             ${error}
         `);
@@ -73,8 +73,9 @@ export const addPump = pump => async dispatch => {
 // PUT
 export const updatePump = (changes, pump_id) => async dispatch => {
     dispatch({ type: UPDATE_PUMP_START });
+    console.log("In updatePump");
     try {
-        const updated = await axiosWithAuth().post(
+        const updated = await axiosWithAuth().put(
             `pumps/${pump_id}`,
             changes
         );
@@ -114,9 +115,10 @@ export const deletePump = (pump_id) => async dispatch => {
 };
 
 // ASSIGN STRATEGY TO PUMP
-export const assignStrategy = (pump_id, strategy_id) => async dispatch => {
+export const assignStrategy = (pump_id, strategy_id) => dispatch => {
+    console.log("MADE IT INTO ASSIGNSTRATEGY");
     try {
-        const successful = await updatePump({ strategy_id }, pump_id);
+        const successful = updatePump({ strategy_id }, pump_id);
         if (!successful) {
             console.log("* ERROR ASSIGNING STRATEGY");
             return 0;

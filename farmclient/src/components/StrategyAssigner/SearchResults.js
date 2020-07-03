@@ -3,11 +3,13 @@ import SearchResult from "./SearchResult";
 
 export default (props) => {
     const {
-        results
+        results,
+        assign
     } = props;
     return (
         <div className="search-results">
-            {results.map(result => <SearchResult result={result} />)}
+            {results.map(result => <SearchResult assign={assign} result={result} />)}
+
         </div>
     )
 };
