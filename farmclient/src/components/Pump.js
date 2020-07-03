@@ -8,12 +8,16 @@ export default props => {
     console.log("\n\t******PROPS IN PUMP.JS:\n", props);
     const { id, name, farm_id } = props.pump;
     const StrategyAssigner = CreateStrategyAssigner(id);
+    console.log("****************");
+    console.log("PROPS.STRATEGY IN PUMP.JS: ", props.strategy);
+    console.log("****************");
     return (
         <div className="pump">
             <h4>{name}</h4>
+            <h5>Strategy: {props.strategy ? props.strategy.name : "Unassigned"}</h5>
+            <StrategyAssigner />
             <div className="valves">
                 <h5>Valves</h5>
-                <StrategyAssigner />
                 <ValveAdder parentIds={{ pump_id: id, farm_id: farm_id }} />
                 <Valves pumpId={id} />
                 {/* <button className="add-button">Add Valve</button> */}
