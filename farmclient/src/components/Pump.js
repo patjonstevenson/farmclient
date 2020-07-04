@@ -18,7 +18,7 @@ export default props => {
             <StrategyAssigner />
             <div className="valves">
                 <h5>Valves</h5>
-                <ValveAdder parentIds={{ pump_id: id, farm_id: farm_id }} />
+                <ValveAdder parentIds={{ pump_id: id, farm_id }} />
                 <Valves pumpId={id} />
                 {/* <button className="add-button">Add Valve</button> */}
                 {/* {props.pump.valves.map(valve => <Valve valve={valve} />)} */}

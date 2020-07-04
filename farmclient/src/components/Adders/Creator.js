@@ -62,7 +62,7 @@ export default (config) => {
                     className={`adder-button ${name}-adder-button`}
                     onClick={handleClick}
                 >
-                    Add {displayName}
+                    {formVisibility ? "Cancel" : `Add ${displayName}`}
                 </button>
                 <AdderForm
                     // derived={derived}
