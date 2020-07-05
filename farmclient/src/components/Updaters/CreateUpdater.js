@@ -9,7 +9,7 @@ export default (config) => {
     } = config;
 
     const mapStateToProps = state => {
-        const { parentIdStrings } = config;
+        // const { parentIdStrings } = config;
         // console.log("PROPS in mapStateToProps in Creator.js:\n", props);
         console.log("STATE in mapStateToProps in Creator.js:\n", state);
         console.log("CONFIG in mapStateToProps in Creator.js:\n", config);
