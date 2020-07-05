@@ -28,7 +28,7 @@ export default (pump_id) => {
     const PresentationalComponent = props => {
         return (
             <div className="strategy-assigner">
-                <button onClick={switchAssigning}>Assign Strategy</button>
+                <button onClick={switchAssigning}>{assigning ? "Cancel" : "Assign Strategy"}</button>
                 {assigning && <Search switchAssigning={switchAssigning} strategies={props.strategies} updatePump={props.updatePump} pump_id={pump_id} />}
             </div>
         );

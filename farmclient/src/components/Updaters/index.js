@@ -1,11 +1,11 @@
-import CreateAdder from "./CreateAdder";
+import CreateUpdater from "./CreateUpdater";
 import Creator from "./CreateUpdater";
-// import AdderRegistry from "./AdderRegistry";
-import { FarmAdderInfo, PumpAdderInfo, ValveAdderInfo } from "./UpdaterRegistry";
+// import UpdaterRegistry from "./UpdaterRegistry";
+import { FarmUpdaterInfo, PumpUpdaterInfo, ValveUpdaterInfo } from "./UpdaterRegistry";
 
-export const FarmAdder = Creator(FarmAdderInfo);
-export const ValveAdder = Creator(ValveAdderInfo);
-export const PumpAdder = (() => {
-    console.log("PumpAdderInfo at time of PumpAdder's creation:\n", PumpAdderInfo);
-    return Creator(PumpAdderInfo);
+export const FarmUpdater = Creator(FarmUpdaterInfo);
+export const ValveUpdater = Creator(ValveUpdaterInfo);
+export const PumpUpdater = (() => {
+    console.log("PumpUpdaterInfo at time of PumpUpdater's creation:\n", PumpUpdaterInfo);
+    return Creator(PumpUpdaterInfo);
 })();

@@ -64,7 +64,7 @@ export default (config) => {
                 >
                     {formVisibility ? "Cancel" : `Add ${displayName}`}
                 </button>
-                <AdderForm
+                {formVisibility && <AdderForm
                     // derived={derived}
                     props={props}
                     config={config}
@@ -72,7 +72,7 @@ export default (config) => {
                     switchFormVisibility={switchFormVisibility}
                 // props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
                 // props={actionFunction, exampleObject, types, switchFormVisibility}
-                />
+                />}
             </div>
         );
     }

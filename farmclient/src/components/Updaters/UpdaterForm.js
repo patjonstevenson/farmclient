@@ -58,9 +58,9 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
                 });
             }
             // Send form object to the server
-            console.log("\n**Calling actionFunction with\n", { ...thing, ...props.parentIds, user_id });
+            console.log("\n**Calling actionFunction with\n", { ...thing, user_id }); // removed  ...props.parentIds,
             console.log("\nAction Function: ", props.actionFunction);
-            const successful = await props.actionFunction({ ...thing, ...props.parentIds, user_id });
+            const successful = await props.actionFunction({ ...thing, user_id }); // removed  ...props.parentIds,
             if (!successful) {
                 setAttempt(-1)
             } else {
@@ -73,16 +73,16 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
         } catch (error) {
             // console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
             // console.log(`Occurred for property ${property}`);
-            console.log(`\nERROR in handleSubmit in AdderForm\n${error}\n`);
+            console.log(`\nERROR in handleSubmit in UpdaterForm\n${error}\n`);
             console.log("thing:\n", thing);
             setAttempt(-1);
         }
     };
-    console.log("props in AdderForm: ", props);
-    console.log("exampleObject in AdderForm: ", exampleObject);
+    console.log("props in UpdaterForm: ", props);
+    console.log("exampleObject in UpdaterForm: ", exampleObject);
 
     return (
-        <div className={`adder-form-${
+        <div className={`updater-form-${
             formVisibility
                 ? "visible"
                 : "invisible"
@@ -95,12 +95,12 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
                 {/* Create input fields dynamically */}
                 {/* TODO:
                 Once exampleObject is changed to an arrray in 
-                AdderRegistry, change the following lines to just
+                UpdaterRegistry, change the following lines to just
                 the array name instead of Object.keys() */}
                 {exampleObject
                     ? Object.keys(exampleObject).map(property => {
                         return (
-                            <div className="adder-form-input">
+                            <div className="updater-form-input">
                                 <label htmlFor={thing[property]}>{property}</label>
                                 <input value={thing[property]} onChange={handleChanges(property)} />
                             </div>

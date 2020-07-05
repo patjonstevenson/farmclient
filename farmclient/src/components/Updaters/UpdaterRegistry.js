@@ -1,45 +1,15 @@
 // Action function imports
-import { addFarm } from "../../state/resources/farm/actions";
-import { addPump } from "../../state/resources/pump/actions";
-import { addValve } from "../../state/resources/valve/actions";
+import { updateFarm } from "../../state/resources/farm/actions";
+import { updatePump } from "../../state/resources/pump/actions";
+import { updateValve } from "../../state/resources/valve/actions";
 
 // TODO:
 // Switch exampleObject to an array of property names
-// NOTE: Also need to change in AdderForm from Object.keys()
+// NOTE: Also need to change in UpdaterForm from Object.keys()
 // ALSO NEED TO MAKE THE TYPE FOR USER_ID, FARM_ID, AND PUMP_ID A 
 // FUNCTION THAT GRABS THOSE IDS FROM THE PARENT COMPONENT
 
-// export const LoginInfo = {
-//     name: "login",
-//     displayName: "Login",
-//     exampleObject: {
-//         name: "",
-//         user_id: "",
-//         timezone: ""
-//     },
-//     types: {
-//         name: String,
-//         user_id: Number,
-//         timezone: String
-//     },
-//     actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
-// };
-// export const RegisterInfo = {
-//     name: "Register",
-//     displayName: "Register",
-//     exampleObject: {
-//         name: "",
-//         user_id: "",
-//         timezone: ""
-//     },
-//     types: {
-//         name: String,
-//         user_id: Number,
-//         timezone: String
-//     },
-//     actionFunction: farm => { console.log("Added a farm!\n", farm); } //addFarm
-// };
-export const FarmAdderInfo = {
+export const FarmUpdaterInfo = {
     name: "farm",
     displayName: "Farm",
     exampleObject: {
@@ -53,9 +23,9 @@ export const FarmAdderInfo = {
         timezone: String
     },
     parentIdStrings: [],
-    actionFunction: farm => addFarm(farm) //farm => { console.log("Added a farm!\n", farm); } 
+    actionFunction: farm => updateFarm(farm) //farm => { console.log("Added a farm!\n", farm); } 
 };
-export const PumpAdderInfo = {
+export const PumpUpdaterInfo = {
     name: "pump",
     displayName: "Pump",
     exampleObject: {
@@ -67,9 +37,9 @@ export const PumpAdderInfo = {
 
     },
     parentIdStrings: ["farm_id"],
-    actionFunction: pump => addPump(pump) //pump => { console.log("Added a pump!\n", pump); }
+    actionFunction: pump => updatePump(pump) //pump => { console.log("Added a pump!\n", pump); }
 };
-export const ValveAdderInfo = {
+export const ValveUpdaterInfo = {
     name: "valve",
     displayName: "Valve",
     exampleObject: {
@@ -81,5 +51,5 @@ export const ValveAdderInfo = {
 
     },
     parentIdStrings: ["farm_id", "pump_id"],
-    actionFunction: valve => addValve(valve) //valve => { console.log("Added a valve!\n", valve); }
+    actionFunction: valve => updateValve(valve) //valve => { console.log("Added a valve!\n", valve); }
 };
