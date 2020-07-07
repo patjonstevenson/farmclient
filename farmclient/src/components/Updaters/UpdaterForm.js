@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default ({ config, formVisibility, switchFormVisibility, parentIds, props }) => {
+export default ({ config, formVisibility, switchFormVisibility, props }) => {
     // TODO:
     // we need to know the following:
 
@@ -19,16 +19,19 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
         // parentIds
     } = config;
 
+    const { resource_id } = props;
+
     const user_id = Number(localStorage.getItem("user_id")
         ? localStorage.getItem("user_id")
         : props.user_id
             ? props.user_id
             : null);
 
+    console.log("props: ", props);
     console.log("user_id: ", user_id);
+    console.log("resource_id: ", resource_id);
 
-
-    const [thing, setThing] = useState(exampleObject);
+    const [changes, setChanges] = useState(exampleObject);
 
     // 1 if attempt successful
     // 0 if no attempt made yet
@@ -40,41 +43,59 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
     }, [attempt]);
 
     const handleChanges = property => e => {
-        setThing({
-            ...thing,
+        setChanges({
+            ...changes,
             [property]: e.target.value
         });
     };
 
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
 
         try {
             // Coerce the types
-            for (let property in thing) {
-                setThing({
-                    ...thing,
-                    [property]: types[property](thing[property])
+            for (let property in changes) {
+                setChanges({
+                    ...changes,
+                    [property]: types[property](changes[property])
                 });
             }
+
+            // Only send fields that actually are filled out
+            // We don't want to erase all the fields not being updated
+            const onlyTheRealChanges = Object.keys(changes).reduce(
+                (acc, curr) => changes[curr]
+                    ? { ...acc, [curr]: changes[curr] }
+                    : acc,
+                {}
+            );
+
+
             // Send form object to the server
-            console.log("\n**Calling actionFunction with\n", { ...thing, user_id }); // removed  ...props.parentIds,
+            console.log("\n**Calling actionFunction with\n"); // removed  ...props.parentIds,
+            console.log("changes: ", onlyTheRealChanges);
+            console.log("resource id: ", resource_id); // should be {resource_id: #}
             console.log("\nAction Function: ", props.actionFunction);
-            const successful = await props.actionFunction({ ...thing, user_id }); // removed  ...props.parentIds,
+            console.log("props in UpdaterForm right before actionFunction call: ", props);
+            console.log("props.resource_id in UpdaterForm right before actionFunction call: ", props.resource_id);
+            const r = props.resource_id;
+            console.log("r: ", r);
+            const successful = props.actionFunction(onlyTheRealChanges,
+                (() => { console.log("typeof r in call to actionFunction: ", typeof r); return r; })());
             if (!successful) {
                 setAttempt(-1)
             } else {
                 // Make form go away
                 switchFormVisibility();
                 // Reset form
-                setThing(exampleObject);
+                setChanges(exampleObject);
                 setAttempt(1);
             }
         } catch (error) {
-            // console.log(`\nERROR coercing type ${typeof thing[property]} to ${types[property]}`);
+            // console.log(`\nERROR coercing type ${typeof changes[property]} to ${types[property]}`);
             // console.log(`Occurred for property ${property}`);
             console.log(`\nERROR in handleSubmit in UpdaterForm\n${error}\n`);
-            console.log("thing:\n", thing);
+            console.log("changes:\n", changes);
             setAttempt(-1);
         }
     };
@@ -82,6 +103,8 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
     console.log("exampleObject in UpdaterForm: ", exampleObject);
 
     return (
+        // formVisibility used in class for { display: none } is deprecated in this codebase
+        // stick to && for conditional render
         <div className={`updater-form-${
             formVisibility
                 ? "visible"
@@ -97,16 +120,17 @@ export default ({ config, formVisibility, switchFormVisibility, parentIds, props
                 Once exampleObject is changed to an arrray in 
                 UpdaterRegistry, change the following lines to just
                 the array name instead of Object.keys() */}
-                {exampleObject
-                    ? Object.keys(exampleObject).map(property => {
-                        return (
-                            <div className="updater-form-input">
-                                <label htmlFor={thing[property]}>{property}</label>
-                                <input value={thing[property]} onChange={handleChanges(property)} />
-                            </div>
-                        );
+                {
+                    exampleObject
+                        ? Object.keys(exampleObject).map(property => {
+                            return (
+                                <div className="updater-form-input">
+                                    <label htmlFor={changes[property]}>{property}</label>
+                                    <input value={changes[property]} onChange={handleChanges(property)} />
+                                </div>
+                            );
 
-                    }) : <h3>Loading form...</h3>
+                        }) : <h3>Loading form...</h3>
                 }
 
                 <button

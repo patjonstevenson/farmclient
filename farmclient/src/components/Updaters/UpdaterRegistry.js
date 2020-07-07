@@ -23,7 +23,7 @@ export const FarmUpdaterInfo = {
         timezone: String
     },
     parentIdStrings: [],
-    actionFunction: farm => updateFarm(farm) //farm => { console.log("Added a farm!\n", farm); } 
+    actionFunction: (changes, id) => updateFarm(changes, id) //farm => { console.log("Added a farm!\n", farm); } 
 };
 export const PumpUpdaterInfo = {
     name: "pump",
@@ -37,7 +37,7 @@ export const PumpUpdaterInfo = {
 
     },
     parentIdStrings: ["farm_id"],
-    actionFunction: pump => updatePump(pump) //pump => { console.log("Added a pump!\n", pump); }
+    actionFunction: (changes, id) => updatePump(changes, id) //pump => { console.log("Added a pump!\n", pump); }
 };
 export const ValveUpdaterInfo = {
     name: "valve",
@@ -51,5 +51,5 @@ export const ValveUpdaterInfo = {
 
     },
     parentIdStrings: ["farm_id", "pump_id"],
-    actionFunction: valve => updateValve(valve) //valve => { console.log("Added a valve!\n", valve); }
+    actionFunction: (changes, id) => updateValve(changes, id) //valve => { console.log("Added a valve!\n", valve); }
 };

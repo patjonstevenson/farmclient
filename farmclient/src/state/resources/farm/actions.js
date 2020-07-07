@@ -63,22 +63,37 @@ export const addFarm = farm => async dispatch => {
 };
 
 // PUT
-export const updateFarm = (changes, farm_id) => async dispatch => {
+export const updateFarm = (changes, id) => async dispatch => {
     dispatch({ type: UPDATE_FARM_START });
+    console.log("~~~~~~");
+    // WHY IS farm_id SHOWING UP UNDEFINED!?!?
+    // FIX THIS AND THE UPDATERFORMS SHOULD WORK
+    console.log("\tresource id in updateFarm action: ", id);
+    console.log("\tchanges in action: ", changes);
     try {
         const updated = await axiosWithAuth().put(
-            `farms/${farm_id}`,
+            `farms/${id}`,
             changes
         );
         dispatch({
             type: UPDATE_FARM_SUCCESS,
             payload: updated
         });
+        return 1;
     } catch (error) {
         dispatch({
             type: UPDATE_FARM_FAILURE,
             payload: error
         });
+        console.log(`
+            ****************************************
+            ****************************************
+            ****************************************
+            UPDATER ERROR:\n\t
+        `, error);
+
+
+        return 0;
     }
 };
 

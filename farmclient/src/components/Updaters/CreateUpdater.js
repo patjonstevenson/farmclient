@@ -35,6 +35,7 @@ export default (config) => {
 
         // const { actionFunction } = props;
         // const { parentIds } = props;
+        // const { resource_id } = props;
         const {
             name,
             displayName,
