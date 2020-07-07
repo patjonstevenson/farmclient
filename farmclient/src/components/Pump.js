@@ -1,6 +1,7 @@
 import React from "react";
 import Valve from "./Valve";
 import { ValveAdder } from "./Adders";
+import { PumpUpdater } from "./Updaters";
 import Valves from "./Valves";
 import CreateStrategyAssigner from "./StrategyAssigner/CreateStrategyAssigner";
 
@@ -14,6 +15,7 @@ export default props => {
     return (
         <div className="pump">
             <h4>{name}</h4>
+            <PumpUpdater resource_id={props.pump.id} />
             <h5>Strategy: {props.strategy ? props.strategy.name : "Unassigned"}</h5>
             <StrategyAssigner />
             <div className="valves">

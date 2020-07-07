@@ -31,6 +31,7 @@ import {
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE,
 } from "../user/action-types";
+import { sortById } from "../../helpers";
 
 export default (state = initialStore, action) => {
     // For logs
@@ -108,10 +109,10 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: [
+                data: sortById([
                     ...state.data.filter(pump => pump.id !== action.payload.id),
                     action.payload
-                ].sort((a, b) => a.id > b.id ? 1 : -1),
+                ])//.sort((a, b) => a.id > b.id ? 1 : -1),
             };
         case UPDATE_PUMP_FAILURE:
             return {
