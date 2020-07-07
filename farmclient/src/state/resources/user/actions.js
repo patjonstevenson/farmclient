@@ -14,6 +14,7 @@ import {
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE
 } from "./action-types";
+import { sortById, sortUserData } from "../../helpers";
 
 
 export const registerUser = user => async dispatch => {
@@ -85,11 +86,18 @@ export const fetchUserData = id => async dispatch => {
     try {
         const res = await axiosWithAuth().get(`users/${id}`);
         // const userInfo = res.data;
-        console.log(`\nRES in fetchUserData\n${Object.keys(res)}\n`);
+        console.log("\nRES in fetchUserData\n:", res.data);
         // console.log(`\nuserInfo in fetchUserData\n${Object.keys(userInfo.data)}\n`);
+
+
+        const data = sortUserData(res.data);
+        console.log("DATA in fetchUserData: ", data);
+
+
+
         dispatch({
             type: FETCH_USER_DATA_SUCCESS,
-            payload: res.data//userInfo//.data
+            payload: data//userInfo//.data
         });
         return 1;
     } catch (error) {
