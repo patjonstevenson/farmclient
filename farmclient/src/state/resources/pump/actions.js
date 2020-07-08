@@ -81,7 +81,7 @@ export const updatePump = (changes, pump_id) => async dispatch => {
         );
         dispatch({
             type: UPDATE_PUMP_SUCCESS,
-            payload: updated
+            payload: updated.data
         });
         return 1;
     } catch (error) {

@@ -71,17 +71,23 @@ export default ({ config, formVisibility, switchFormVisibility, props }) => {
             );
 
 
-            // Send form object to the server
+            // Just logging for now
             console.log("\n**Calling actionFunction with\n"); // removed  ...props.parentIds,
             console.log("changes: ", onlyTheRealChanges);
             console.log("resource id: ", resource_id); // should be {resource_id: #}
             console.log("\nAction Function: ", props.actionFunction);
             console.log("props in UpdaterForm right before actionFunction call: ", props);
             console.log("props.resource_id in UpdaterForm right before actionFunction call: ", props.resource_id);
+
             const r = props.resource_id;
             console.log("r: ", r);
+
+            // Send form object to the server
             const successful = props.actionFunction(onlyTheRealChanges,
-                (() => { console.log("typeof r in call to actionFunction: ", typeof r); return r; })());
+                // Using this function call to log r in the moment of the call)
+                (() => { console.log("typeof r in call to actionFunction: ", typeof r); return r; })()
+            );
+
             if (!successful) {
                 setAttempt(-1)
             } else {
