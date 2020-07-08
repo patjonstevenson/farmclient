@@ -63,7 +63,7 @@ export default (config) => {
                     className={`updater-button ${name}-updater-button`}
                     onClick={handleClick}
                 >
-                    Edit {displayName}
+                    {formVisibility ? "Cancel" : `Edit ${displayName}`}
                 </button>
                 {formVisibility && <UpdaterForm
                     // derived={derived}
