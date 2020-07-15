@@ -18,7 +18,12 @@ import {
     // DELETE
     DELETE_PUMP_START,
     DELETE_PUMP_SUCCESS,
-    DELETE_PUMP_FAILURE
+    DELETE_PUMP_FAILURE,
+
+    // ASSIGN STRATEGY
+    ASSIGN_STRATEGY_START,
+    ASSIGN_STRATEGY_SUCCESS,
+    ASSIGN_STRATEGY_FAILURE
 } from "./action-types";
 import {
     // FETCH
@@ -26,6 +31,7 @@ import {
     FETCH_USER_DATA_SUCCESS,
     FETCH_USER_DATA_FAILURE,
 } from "../user/action-types";
+import { sortById } from "../../helpers";
 
 export default (state = initialStore, action) => {
     // For logs
@@ -103,10 +109,10 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: null,
-                data: [
+                data: sortById([
                     ...state.data.filter(pump => pump.id !== action.payload.id),
                     action.payload
-                ].sort((a, b) => a.id > b.id ? 1 : -1),
+                ])//.sort((a, b) => a.id > b.id ? 1 : -1),
             };
         case UPDATE_PUMP_FAILURE:
             return {
@@ -134,6 +140,23 @@ export default (state = initialStore, action) => {
                 ...state,
                 isFetching: false,
                 error: action.payload,
+            };
+
+        // ASSIGN_STRATEGY
+        case ASSIGN_STRATEGY_START:
+            return {
+                ...state,
+
+            };
+        case ASSIGN_STRATEGY_SUCCESS:
+            return {
+                ...state,
+
+            };
+        case ASSIGN_STRATEGY_FAILURE:
+            return {
+                ...state,
+
             };
 
         default:

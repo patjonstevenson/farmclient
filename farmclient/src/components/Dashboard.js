@@ -26,7 +26,7 @@ const Dashboard = ({ fetchUserData, ...props }) => {
 
     }, []);
 
-    console.log(props.id);
+    // console.log(props.id);
     return (
         <div className="dashboard">
             <h1>Farms</h1>

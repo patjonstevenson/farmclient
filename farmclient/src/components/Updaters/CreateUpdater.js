@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import AdderForm from "./AdderForm";
+import UpdaterForm from "./UpdaterForm";
 
 export default (config) => {
     const {
@@ -9,7 +9,7 @@ export default (config) => {
     } = config;
 
     const mapStateToProps = state => {
-        const { parentIdStrings } = config;
+        // const { parentIdStrings } = config;
         // console.log("PROPS in mapStateToProps in Creator.js:\n", props);
         console.log("STATE in mapStateToProps in Creator.js:\n", state);
         console.log("CONFIG in mapStateToProps in Creator.js:\n", config);
@@ -35,6 +35,7 @@ export default (config) => {
 
         // const { actionFunction } = props;
         // const { parentIds } = props;
+        // const { resource_id } = props;
         const {
             name,
             displayName,
@@ -53,26 +54,26 @@ export default (config) => {
             switchFormVisibility();
         }
 
-        // console.log(`AdderInfo in CreateAdder:\n${AdderInfo}`)
-        console.log(`exampleObject in CreateAdder before being passed to AdderForm:\n${exampleObject}`);
+        // console.log(`UpdaterInfo in CreateUpdater:\n${UpdaterInfo}`)
+        console.log(`exampleObject in CreateUpdater before being passed to UpdaterForm:\n${exampleObject}`);
 
         return (
-            <div className={`adder ${name}-adder`}>
+            <div className={`updater ${name}-updater`}>
                 <button
-                    className={`adder-button ${name}-adder-button`}
+                    className={`updater-button ${name}-updater-button`}
                     onClick={handleClick}
                 >
-                    Add {displayName}
+                    {formVisibility ? "Cancel" : `Edit ${displayName}`}
                 </button>
-                <AdderForm
+                {formVisibility && <UpdaterForm
                     // derived={derived}
                     props={props}
                     config={config}
                     formVisibility={formVisibility}
                     switchFormVisibility={switchFormVisibility}
-                // props={{ ...AdderInfo, switchFormVisibility, formVisibility }}
+                // props={{ ...UpdaterInfo, switchFormVisibility, formVisibility }}
                 // props={actionFunction, exampleObject, types, switchFormVisibility}
-                />
+                />}
             </div>
         );
     }

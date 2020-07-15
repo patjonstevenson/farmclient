@@ -2,6 +2,8 @@
 import { addFarm } from "../../state/resources/farm/actions";
 import { addPump } from "../../state/resources/pump/actions";
 import { addValve } from "../../state/resources/valve/actions";
+import { addStrategy } from "../../state/resources/strategy/actions";
+import { addTactic } from "../../state/resources/tactic/actions";
 
 // TODO:
 // Switch exampleObject to an array of property names
@@ -82,4 +84,32 @@ export const ValveAdderInfo = {
     },
     parentIdStrings: ["farm_id", "pump_id"],
     actionFunction: valve => addValve(valve) //valve => { console.log("Added a valve!\n", valve); }
+};
+export const StrategyAdderInfo = {
+    name: "strategy",
+    displayName: "Strategy",
+    exampleObject: {
+        name: "",
+
+    },
+    types: {
+        name: String,
+
+    },
+    parentIdStrings: [],
+    actionFunction: strategy => addStrategy(strategy) //valve => { console.log("Added a valve!\n", valve); }
+};
+export const TacticAdderInfo = {
+    name: "tactic",
+    displayName: "Tactic",
+    exampleObject: {
+        name: "",
+
+    },
+    types: {
+        name: String,
+
+    },
+    parentIdStrings: ["strategy_id"],
+    actionFunction: tactic => addTactic(tactic) //valve => { console.log("Added a valve!\n", valve); }
 };

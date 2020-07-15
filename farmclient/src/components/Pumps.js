@@ -10,7 +10,7 @@ const Pumps = props => {
         <div className="pumps">
             {
                 pumps
-                    ? pumps.map(pump => <Pump pump={pump} />)
+                    ? pumps.map(pump => <Pump pump={pump} strategy={props.strategies[pump.id]} />)
                     : <h3>Loading Pumps...</h3>
             }
         </div>
@@ -20,7 +20,11 @@ const Pumps = props => {
 const mapStateToProps = state => {
     console.log("\nSTATE in pumps:\n", state);
     return ({
-        pumps: state.pumps.data ? state.pumps.data : []
+        pumps: state.pumps.data ? state.pumps.data : [],
+        strategies: state.pumps.data.reduce((strategies, p) => ({
+            ...strategies,
+            [p.id]: state.strategies.data.find(s => s.id === p.strategy_id)
+        }), {})
     });
 }
 

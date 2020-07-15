@@ -53,13 +53,13 @@ export const addValve = (valve) => async dispatch => {
 export const updateValve = (changes, valve_id) => async dispatch => {
     dispatch({ type: UPDATE_VALVE_START });
     try {
-        const updated = await axiosWithAuth().post(
+        const updated = await axiosWithAuth().put(
             `valves/${valve_id}`,
             changes
         );
         dispatch({
             type: UPDATE_VALVE_SUCCESS,
-            payload: updated
+            payload: updated.data
         });
         return 1;
     } catch (error) {
